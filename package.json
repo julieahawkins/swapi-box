@@ -11,6 +11,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "eslint": "./node_modules/eslint/bin/eslint.js ./src/*/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "node-sass-chokidar": "0.0.3",
+    "prop-types": "^15.6.0"
   }
 }
