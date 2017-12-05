@@ -15,14 +15,17 @@ class App extends Component {
 
   async componentDidMount() {
 
-    // const randomFilm = Math.floor(Math.random() * 7) + 1;
-    // const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
-    // const data = await fetchedData.json();
-    // const defaultScroll = {
-    //   title: data.title,
-    //   crawlText: data.opening_crawl
-    // };
-    // this.setState( {defaultScroll} );
+    const randomFilm = Math.floor(Math.random() * 7) + 1;
+    const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
+    const data = await fetchedData.json();
+    console.log(data)
+    const defaultScroll = {
+      title: data.title,
+      crawlText: data.opening_crawl, 
+      episodeNum: data.episode_id, 
+      releaseDate: data.release_date
+    };
+    this.setState( {defaultScroll} );
   }
 
   render() {
