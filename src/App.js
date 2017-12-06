@@ -18,19 +18,44 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const randomFilm = Math.floor(Math.random() * 7) + 1;
-    const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
-    const data = await fetchedData.json();
-
-    const currentFilm = {
-      title: data.title.toUpperCase(),
-      crawlText: data.opening_crawl, 
-      episodeNum: data.episode_id, 
-      releaseDate: data.release_date
-    };
-
+    const currentFilm = await this.fetchFilm();
+    // const people = await this.fetchPeople();
+    // const planets = 
+    // const vehicles =
+    console.log(people)
     this.setState( {currentFilm} );
   }
+
+  async fetchFilm() {
+    const randomFilm = Math.floor(Math.random() * 7) + 1;
+    const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
+    const filmData = await fetchedData.json();
+
+    const currentFilm = {
+      title: filmData.title.toUpperCase(),
+      crawlText: filmData.opening_crawl, 
+      episodeNum: filmData.episode_id, 
+      releaseDate: filmData.release_date
+    };
+
+    return currentFilm
+  }
+
+  async fetchPeople() {
+    debugger;
+    const fetchedData = await fetch(`https://swapi.co/api/people/`);
+    const peopleArray = await fetchedData.json();
+    // const people = await this.fetchPeopleData(peopleArray);
+  }
+
+  // fetchPeopleData(peopleArray) {
+  //   const unresolvedPromises = peopeArray.map(async(person) => {
+  //     let personFetch = await fetch(person);
+  //     let personData = await personFetch.json();
+  //     // debugger;
+  //     return personData
+  //   })
+  // }
 
   render() {
     return (

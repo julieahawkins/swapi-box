@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from '../Button/Button';
-// import './Card.css';
+import './Card.css';
 
 const Card = () => {
   return (
-    <div className="card">
+    <div className="Card">
       <Button name='*'/>
       <p>Name: </p>
       <p>Homeworld</p>
