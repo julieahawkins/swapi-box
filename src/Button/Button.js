@@ -5,7 +5,7 @@ const Button = (props) => {
   return (
     <button 
       className={`Button ${props.name}`}
-      onClick={() => {props.displayCard(props.name)}}>
+      onClick={() => {props.displayCard ? props.displayCard(props.name) : null}}>
       {props.name}
     </button>
   )
