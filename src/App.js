@@ -9,23 +9,22 @@ class App extends Component {
     super();
 
     this.state = {
-      defaultScroll: {}
+      currentFilm: {}
     }
   }
 
   async componentDidMount() {
-
     const randomFilm = Math.floor(Math.random() * 7) + 1;
     const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
     const data = await fetchedData.json();
     console.log(data)
-    const defaultScroll = {
+    const currentFilm = {
       title: data.title,
       crawlText: data.opening_crawl, 
       episodeNum: data.episode_id, 
       releaseDate: data.release_date
     };
-    this.setState( {defaultScroll} );
+    this.setState( {currentFilm} );
   }
 
   render() {
@@ -33,7 +32,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Button />
-        <Scroll defaultScroll={this.state.defaultScroll}/>
+        <Scroll currentFilm={this.state.currentFilm}/>
       </div>
     );
   }

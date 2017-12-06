@@ -1,12 +1,24 @@
 import React from 'react';
 import './Scroll.css';
 
-const Scroll = ({defaultScroll}) => {  
+const Scroll = ({currentFilm}) => {
+  const numerals = {
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII'
+  }
+
   return (
-    <div className='Scroll'>
-      <h3>Episode {defaultScroll.episodeNum}: {defaultScroll.title}</h3>
-      <p className='scroll-text'>{defaultScroll.crawlText}</p>
-      <p>{defaultScroll.releaseDate}</p>
+    <div className='scroll-container'>
+      <div className='Scroll'>
+        <h3>Episode {numerals[currentFilm.episodeNum]}: {currentFilm.title}</h3>
+        <p className='scroll-text'>{currentFilm.crawlText}</p>
+        <p>{currentFilm.releaseDate}</p>
+      </div>
     </div>
   )
 }
