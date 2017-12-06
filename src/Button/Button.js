@@ -1,11 +1,11 @@
 import React from 'react';
 import './Button.css';
 
-const Button = () => {
+const Button = (props) => {
   return (
     <button 
-      className='Button'>
-      Favorites
+      className={`Button ${props.name}`}>
+      {props.name}
     </button>
   )
 }

@@ -1,7 +1,5 @@
 .Header {
   display: flex;
   justify-content: center;
-  button {
-    display: inline-block;
-  }
+  box-sizing: border-box;
 }

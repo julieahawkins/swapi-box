@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className='Header'>
       <h1>Swapi Box</h1>
-      <Button />
+      <Button name='Favorites'/>
     </div>
   )
 }

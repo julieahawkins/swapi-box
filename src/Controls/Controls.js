@@ -1,13 +1,13 @@
 import React from 'react';
 import Button from '../Button/Button';
-// import './Controls.css';
+import './Controls.css';
 
 const Controls = () => {
   return (
     <div className='Controls'>
-      <Button />
-      <Button />
-      <Button />
+      <Button name='People'/>
+      <Button name='Planets'/>
+      <Button name='Vehicles'/>
     </div>
   )
 }

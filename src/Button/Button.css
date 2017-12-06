@@ -1,2 +1,7 @@
-Button {
-  float: right; }
+.Button {
+  font-size: 18pt;
+  margin: 10px; }
+
+.Favorites {
+  position: absolute;
+  left: 85%; }
