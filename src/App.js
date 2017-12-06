@@ -54,7 +54,17 @@ class App extends Component {
     const unresolvedPromises = peopleArray.map(async(person) => {
       let homeworldFetch = await fetch(person.homeworld);
       let homeworldData = await homeworldFetch.json();
-      return {name: person.name, data: {homeworld: homeworldData}}
+
+      let speciesFetch = await fetch(person.species);
+      let speciesData = await speciesFetch.json();
+
+      return {
+        name: person.name, 
+        data: {
+          homeworld: homeworldData, 
+          species: speciesData
+        }
+      }
     })
     return Promise.all(unresolvedPromises)
   }

@@ -9,8 +9,9 @@ const Card = (props) => {
       <Button name='*'/>
       <p>Name: {props.charName}</p>
       <p>Homeworld: {props.data.homeworld.name}</p>
-      <p>Species</p>
-      <p>Population of Homeworld</p>
+      <p>Species: {props.data.species.name}</p>
+      <p>Language: {props.data.species.language}</p>
+      <p>Population: {props.data.homeworld.population}</p>
     </div>
   )
 }
