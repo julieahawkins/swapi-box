@@ -11,7 +11,7 @@ class App extends Component {
 
     this.state = {
       currentFilm: {},
-      // people:
+      people: []
       // planets:
       // vehicles:
     }
@@ -19,11 +19,11 @@ class App extends Component {
 
   async componentDidMount() {
     const currentFilm = await this.fetchFilm();
-    // const people = await this.fetchPeople();
+    const people = await this.fetchPeople();
     // const planets = 
     // const vehicles =
-    console.log(people)
-    this.setState( {currentFilm} );
+    // console.log(people)
+    this.setState( {currentFilm, people} );
   }
 
   async fetchFilm() {
@@ -42,28 +42,33 @@ class App extends Component {
   }
 
   async fetchPeople() {
-    debugger;
     const fetchedData = await fetch(`https://swapi.co/api/people/`);
     const peopleArray = await fetchedData.json();
-    // const people = await this.fetchPeopleData(peopleArray);
+    // console.log(peopleArray.results)
+    return await this.fetchPeopleData(peopleArray.results);
+    // console.log(people);
   }
 
-  // fetchPeopleData(peopleArray) {
-  //   const unresolvedPromises = peopeArray.map(async(person) => {
-  //     let personFetch = await fetch(person);
-  //     let personData = await personFetch.json();
-  //     // debugger;
-  //     return personData
-  //   })
-  // }
+  fetchPeopleData(peopleArray) {
+    // console.log(peopleArray)
+    const unresolvedPromises = peopleArray.map(async(person) => {
+      let homeworldFetch = await fetch(person.homeworld);
+      let homeworldData = await homeworldFetch.json();
+      return {name: person.name, data: {homeworld: homeworldData}}
+    })
+    return Promise.all(unresolvedPromises)
+  }
 
   render() {
     return (
       <div className="App">
         <Header />
         <Controls />
-        <Scroll currentFilm={this.state.currentFilm}/>
-        <CardContainer />
+        {
+          this.state.currentFilm &&
+          <Scroll currentFilm={this.state.currentFilm}/>
+        }
+        <CardContainer people={this.state.people} />
       </div>
     );
   }
