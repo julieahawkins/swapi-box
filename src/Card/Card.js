@@ -3,7 +3,6 @@ import Button from '../Button/Button';
 import './Card.css';
 
 const Card = (props) => {
-  console.log(props)
   return (
     <div className="Card">
       <Button name='*'/>

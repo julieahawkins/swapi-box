@@ -11,6 +11,7 @@ class App extends Component {
 
     this.state = {
       currentFilm: {},
+      displaying: null,
       people: []
       // planets:
       // vehicles:
@@ -22,7 +23,6 @@ class App extends Component {
     const people = await this.fetchPeople();
     // const planets = 
     // const vehicles =
-    // console.log(people)
     this.setState( {currentFilm, people} );
   }
 
@@ -37,20 +37,16 @@ class App extends Component {
       episodeNum: filmData.episode_id, 
       releaseDate: filmData.release_date
     };
-
     return currentFilm
   }
 
   async fetchPeople() {
     const fetchedData = await fetch(`https://swapi.co/api/people/`);
     const peopleArray = await fetchedData.json();
-    // console.log(peopleArray.results)
     return await this.fetchPeopleData(peopleArray.results);
-    // console.log(people);
   }
 
   fetchPeopleData(peopleArray) {
-    // console.log(peopleArray)
     const unresolvedPromises = peopleArray.map(async(person) => {
       let homeworldFetch = await fetch(person.homeworld);
       let homeworldData = await homeworldFetch.json();
@@ -69,16 +65,23 @@ class App extends Component {
     return Promise.all(unresolvedPromises)
   }
 
+  displayCards = (type) => {
+    this.setState( {displaying: type.toLowerCase()} )
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Controls />
+        <Controls displayCards={this.displayCards}/>
         {
           this.state.currentFilm &&
           <Scroll currentFilm={this.state.currentFilm}/>
         }
-        <CardContainer people={this.state.people} />
+        {
+          this.state.people.length > 0 &&
+          <CardContainer cards={this.state[this.state.displaying]} />
+        }
       </div>
     );
   }
