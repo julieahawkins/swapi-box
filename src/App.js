@@ -19,7 +19,7 @@ class App extends Component {
     const data = await fetchedData.json();
     console.log(data)
     const currentFilm = {
-      title: data.title,
+      title: data.title.toUpperCase(),
       crawlText: data.opening_crawl, 
       episodeNum: data.episode_id, 
       releaseDate: data.release_date
