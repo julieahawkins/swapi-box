@@ -3,6 +3,7 @@
   border: 1px solid;
   overflow: hidden;
   height: 400px;
+  margin: 35px;
   display: flex;
   justify-content: center;
   perspective: 400px;
@@ -12,7 +13,7 @@
   text-align: center;
   padding: 5px;
   position: relative;
-  top: -100px;
+  top: -2000px;
   transform-origin: 50% 100%;
   font-size: 50pt;
   font-family: 'Pathway Gothic One', sans-serif;
@@ -21,6 +22,11 @@
   line-height: 150%;
   color: yellow;
   animation: crawl 120s linear; }
+  .Scroll .intro {
+    margin-bottom: 100px;
+    padding: 100px;
+    color: #4d4dff;
+    text-align: left; }
   .Scroll h3 {
     margin: 0px; }
 
