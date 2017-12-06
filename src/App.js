@@ -73,14 +73,16 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Controls displayCards={this.displayCards}/>
+        <Controls  
+            displaying={this.state.displaying} displayCards={this.displayCards}/>
         {
           this.state.currentFilm &&
           <Scroll currentFilm={this.state.currentFilm}/>
         }
         {
           this.state.people.length > 0 &&
-          <CardContainer cards={this.state[this.state.displaying]} />
+          <CardContainer
+            cards={this.state[this.state.displaying]} />
         }
       </div>
     );

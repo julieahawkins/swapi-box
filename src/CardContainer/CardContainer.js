@@ -3,7 +3,6 @@ import Card from '../Card/Card';
 // import './CardContainer.css';
 
 const CardContainer = (props) => {
-  console.log(props.cards)
   let mappedCards = [];
   if (props.cards) {
     mappedCards = props.cards.map((person, index) => {
@@ -11,7 +10,8 @@ const CardContainer = (props) => {
         <Card 
           key={`card-${index}`}
           charName={person.name} 
-          data={person.data} />
+          data={person.data}
+           />
       )
     })
   } else {
