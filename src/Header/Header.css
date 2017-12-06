@@ -1,2 +1,5 @@
 .Header {
-  text-align: center; }
+  display: flex;
+  justify-content: center; }
+  .Header button {
+    display: inline-block; }

@@ -1,9 +1,13 @@
 import React from 'react';
+import Button from '../Button/Button';
 import './Header.css';
 
 const Header = () => {
   return (
-    <h1 className="Header">Swapi Box</h1>
+    <div className='Header'>
+      <h1>Swapi Box</h1>
+      <Button />
+    </div>
   )
 }
 

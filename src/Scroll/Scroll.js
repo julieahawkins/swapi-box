@@ -18,7 +18,7 @@ const Scroll = ({currentFilm}) => {
         <h3>Episode {numerals[currentFilm.episodeNum]}</h3>
         <h3>{currentFilm.title}</h3>
         <p className='scroll-text'>{currentFilm.crawlText}</p>
-        <p>{currentFilm.releaseDate}</p>
+        <p>Released: {currentFilm.releaseDate}</p>
       </div>
     </div>
   )
