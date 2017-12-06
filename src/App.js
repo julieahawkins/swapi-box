@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header/Header';
-import Button from './Button/Button';
+import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
+import CardContainer from './CardContainer/CardContainer';
 import './App.css';
 
 class App extends Component {
@@ -9,30 +10,80 @@ class App extends Component {
     super();
 
     this.state = {
-      currentFilm: {}
+      currentFilm: {},
+      displaying: null,
+      people: []
+      // planets:
+      // vehicles:
     }
   }
 
   async componentDidMount() {
+    const currentFilm = await this.fetchFilm();
+    const people = await this.fetchPeople();
+    // const planets = 
+    // const vehicles =
+    this.setState( {currentFilm, people} );
+  }
+
+  async fetchFilm() {
     const randomFilm = Math.floor(Math.random() * 7) + 1;
     const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
-    const data = await fetchedData.json();
-    console.log(data)
+    const filmData = await fetchedData.json();
+
     const currentFilm = {
-      title: data.title.toUpperCase(),
-      crawlText: data.opening_crawl, 
-      episodeNum: data.episode_id, 
-      releaseDate: data.release_date
+      title: filmData.title.toUpperCase(),
+      crawlText: filmData.opening_crawl, 
+      episodeNum: filmData.episode_id, 
+      releaseDate: filmData.release_date
     };
-    this.setState( {currentFilm} );
+    return currentFilm
+  }
+
+  async fetchPeople() {
+    const fetchedData = await fetch(`https://swapi.co/api/people/`);
+    const peopleArray = await fetchedData.json();
+    return await this.fetchPeopleData(peopleArray.results);
+  }
+
+  fetchPeopleData(peopleArray) {
+    const unresolvedPromises = peopleArray.map(async(person) => {
+      let homeworldFetch = await fetch(person.homeworld);
+      let homeworldData = await homeworldFetch.json();
+
+      let speciesFetch = await fetch(person.species);
+      let speciesData = await speciesFetch.json();
+
+      return {
+        name: person.name, 
+        data: {
+          homeworld: homeworldData, 
+          species: speciesData
+        }
+      }
+    })
+    return Promise.all(unresolvedPromises)
+  }
+
+  displayCards = (type) => {
+    this.setState( {displaying: type.toLowerCase()} )
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <Button />
-        <Scroll currentFilm={this.state.currentFilm}/>
+        <Controls  
+            displaying={this.state.displaying} displayCards={this.displayCards}/>
+        {
+          this.state.currentFilm &&
+          <Scroll currentFilm={this.state.currentFilm}/>
+        }
+        {
+          this.state.people.length > 0 &&
+          <CardContainer
+            cards={this.state[this.state.displaying]} />
+        }
       </div>
     );
   }

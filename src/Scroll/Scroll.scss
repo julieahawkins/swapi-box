@@ -4,9 +4,10 @@
   border: 1px solid;
   overflow: hidden;
   height: 400px;
+  margin: 35px;
   display: flex;
   justify-content: center;
-  perspective: 400px;
+  perspective: 800px;
   background: black;
 }
 
@@ -14,7 +15,7 @@
   text-align: center;
   padding: 5px;
   position: relative;
-  top: -100px;
+  top: -2500px;
   transform-origin: 50% 100%;
   font-size: 50pt;
   font-family: 'Pathway Gothic One', sans-serif;
@@ -24,6 +25,12 @@
 
   color: yellow;
   animation: crawl 120s linear;
+  .intro {
+    margin-bottom: 100px;
+    padding: 100px;
+    color: lighten(blue, 15%);
+    text-align: left;
+  }
   h3 {
     margin: 0px;
   }

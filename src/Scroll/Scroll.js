@@ -15,10 +15,11 @@ const Scroll = ({currentFilm}) => {
   return (
     <div className='scroll-container'>
       <div className='Scroll'>
+        <p className='intro'>A long time ago in a galaxy far, far away....</p>
         <h3>Episode {numerals[currentFilm.episodeNum]}</h3>
         <h3>{currentFilm.title}</h3>
         <p className='scroll-text'>{currentFilm.crawlText}</p>
-        <p>{currentFilm.releaseDate}</p>
+        <p>Released: {currentFilm.releaseDate}</p>
       </div>
     </div>
   )

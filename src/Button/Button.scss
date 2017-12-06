@@ -1,7 +1,12 @@
-Button {
-  float: right;
+.Button {
+  font-size: 18pt;
+  margin: 10px;
 }
-
-.favorites {
-
+.selected {
+  background: black;
+  color: white;
+}
+.Favorites {
+  position: absolute;
+  left: 85%;
 }
