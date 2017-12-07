@@ -17,7 +17,7 @@ const Card = (props) => {
       <p>Name: {props.cardTitle}</p>
       {
         props.type === 'people' &&
-          <div className='card-data-container'>
+          <div className={`${props.type}-cards-container`}>
             <p>Species: {props.cardData.species.name}</p>
             <p>Language: {props.cardData.species.language}</p>
             <p>Homeworld: {props.cardData.homeworld.name}</p>
@@ -26,7 +26,7 @@ const Card = (props) => {
       }
       {
         props.type === 'planets' &&
-          <div className='card-data-container'>
+          <div className={`${props.type}-cards-container`}>
             <p>Terrain: {props.cardData.terrain}</p>
             <p>Climate: {props.cardData.climate}</p>
             <p>Population: {props.cardData.population}</p>
@@ -38,7 +38,12 @@ const Card = (props) => {
           </div>
       }
       {
-
+        props.type === 'vehicles' &&
+          <div className={`${props.type}-cards-container`}>
+            <p>Model: {props.cardData.model}</p>
+            <p>Class: {props.cardData.class}</p>
+            <p>Passengers: {props.cardData.passengers}</p>
+          </div>
       }
     </div>  
   )
