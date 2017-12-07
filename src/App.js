@@ -14,7 +14,8 @@ class App extends Component {
       displaying: null,
       people: [],
       planets: [],
-      vehicles: []
+      vehicles: [],
+      favorites: []
     }
   }
 
@@ -114,6 +115,10 @@ class App extends Component {
     })
   }
 
+  updateFavorites = (card) => {
+    
+  }
+
   displayCards = (type) => {
     this.setState( {displaying: type.toLowerCase()} )
   }
@@ -121,7 +126,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header displayCards={this.displayCards} />
         <Controls  
             displaying={this.state.displaying} 
             displayCards={this.displayCards} />
@@ -132,6 +137,7 @@ class App extends Component {
         {
           this.state.people.length > 0 &&
           <CardContainer 
+            updateFavorites={this.updateFavorites}
             displaying={this.state.displaying}
             cards={this.state[this.state.displaying]} />
         }

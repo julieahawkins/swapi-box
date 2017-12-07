@@ -9,7 +9,9 @@ const Button = (props) => {
   return (
     <button 
       className={`${buttonClass} ${props.name}`}
-      onClick={() => {props.displayCard ? props.displayCard(props.name) : null}}>
+      onClick={(e) => {props.displayCards 
+        ? props.displayCards(props.name) 
+        : props.updateFavorites(props.id)}}>
       {props.name}
     </button>
   )

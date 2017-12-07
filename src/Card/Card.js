@@ -13,7 +13,9 @@ const Card = (props) => {
   }
   return (
     <div className="Card">
-      <Button name='*'/>
+      <Button name='*'
+              id={props.cardTitle}
+              updateFavorites={props.updateFavorites}/>
       <p>Name: {props.cardTitle}</p>
       {
         props.type === 'people' &&

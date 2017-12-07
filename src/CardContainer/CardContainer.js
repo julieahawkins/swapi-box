@@ -11,7 +11,8 @@ const CardContainer = (props) => {
           cardData={card.data}
           cardTitle={card.name} 
           key={`card-${index}`}
-          type={props.displaying} />
+          type={props.displaying} 
+          updateFavorites={props.updateFavorites} />
       )
     })
   } else {
