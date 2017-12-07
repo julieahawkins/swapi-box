@@ -29,7 +29,7 @@ module.exports = {
     "comma-style": ["error", "last"],
     "computed-property-spacing": ["error", "never"],
     "func-call-spacing": ["error", "never"],
-    "keyword-spacing": ["error", { "before": true, "after": true }]
+    "keyword-spacing": ["error", { "before": true, "after": true }],
     "max-len": ["warn", 80],
     "no-duplicate-imports": "error",
     "id-length": "error",
