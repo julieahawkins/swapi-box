@@ -82,13 +82,15 @@ class App extends Component {
         return residentData.name
       });
 
+      let residentsData = await Promise.all(residentArray);
+
       return {
         name: planet.name,
         data: {
           terrain: planet.terrain,
           climate: planet.climate,
           population: planet.population,
-          residents: [residentArray]
+          residents: residentsData
         }
       }
     });
@@ -113,7 +115,9 @@ class App extends Component {
         }
         {
           this.state.people.length > 0 &&
-          <CardContainer cards={this.state[this.state.displaying]} />
+          <CardContainer 
+            displaying={this.state.displaying}
+            cards={this.state[this.state.displaying]} />
         }
       </div>
     );
