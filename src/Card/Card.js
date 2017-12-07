@@ -7,7 +7,7 @@ const Card = (props) => {
   if (props.type === 'planets') {
     mappedResidents = props.cardData.residents.map((resident, index) => {
       return (
-        <li>{resident}</li>
+        <li key={`li-${index}`}>{resident}</li>
       )
     })
   }
