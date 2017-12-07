@@ -119,8 +119,8 @@ class App extends Component {
   }
 
   updateFavorites = (card) => {
-    const favorites = [...this.state.favorites, card];
-
+    const favorites = this.state.favorites;
+    [...this.state.favorites, card]
     this.setState( {favorites} );
   }
   
