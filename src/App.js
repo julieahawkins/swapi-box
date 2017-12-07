@@ -12,8 +12,8 @@ class App extends Component {
     this.state = {
       currentFilm: {},
       displaying: null,
-      people: []
-      // planets:
+      people: [],
+      planets: []
       // vehicles:
     }
   }
@@ -21,9 +21,9 @@ class App extends Component {
   async componentDidMount() {
     const currentFilm = await this.fetchFilm();
     const people = await this.fetchPeople();
-    // const planets = 
+    const planets = await this.fetchPlanets();
     // const vehicles =
-    this.setState( {currentFilm, people} );
+    this.setState( {currentFilm, people, planets} );
   }
 
   async fetchFilm() {
@@ -43,6 +43,7 @@ class App extends Component {
   async fetchPeople() {
     const fetchedData = await fetch(`https://swapi.co/api/people/`);
     const peopleArray = await fetchedData.json();
+
     return await this.fetchPeopleData(peopleArray.results);
   }
 
@@ -61,8 +62,38 @@ class App extends Component {
           species: speciesData
         }
       }
-    })
+    });
+
     return Promise.all(unresolvedPromises)
+  }
+
+  async fetchPlanets() {
+    const fetchedData = await fetch(`https://swapi.co/api/planets/`);
+    const planetArray = await fetchedData.json();
+
+    return await this.fetchPlanetData(planetArray.results);
+  }
+
+  fetchPlanetData(planetArray) {
+    const unresolvedPromises = planetArray.map(async(planet) => {
+      let residentArray = planet.residents.map(async(resident) => {
+        let residentFetch = await fetch(resident);
+        let residentData = await residentFetch.json();
+        return residentData.name
+      });
+
+      return {
+        name: planet.name,
+        data: {
+          terrain: planet.terrain,
+          climate: planet.climate,
+          population: planet.population,
+          residents: [residentArray]
+        }
+      }
+    });
+
+    return Promise.all(unresolvedPromises);
   }
 
   displayCards = (type) => {
@@ -74,15 +105,15 @@ class App extends Component {
       <div className="App">
         <Header />
         <Controls  
-            displaying={this.state.displaying} displayCards={this.displayCards}/>
+            displaying={this.state.displaying} 
+            displayCards={this.displayCards} />
         {
           this.state.currentFilm &&
-          <Scroll currentFilm={this.state.currentFilm}/>
+          <Scroll currentFilm={this.state.currentFilm} />
         }
         {
           this.state.people.length > 0 &&
-          <CardContainer
-            cards={this.state[this.state.displaying]} />
+          <CardContainer cards={this.state[this.state.displaying]} />
         }
       </div>
     );
