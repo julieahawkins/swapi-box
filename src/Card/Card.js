@@ -11,6 +11,7 @@ const Card = (props) => {
       )
     })
   }
+  
   return (
     <div className="Card">
       <Button name='*'
