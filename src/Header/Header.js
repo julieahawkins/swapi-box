@@ -7,6 +7,7 @@ const Header = (props) => {
     <div className='Header'>
       <h1>Swapi Box</h1>
       <Button name='Favorites'
+              displaying={props.displaying}
               displayCards={props.displayCards}/>
     </div>
   )

@@ -118,7 +118,7 @@ class App extends Component {
   updateFavorites = (cardName) => {
     const favorites = [...this.state.favorites, cardName];
 
-    this.setState( {favorites} )
+    this.setState( {favorites} );
   }
 
   displayCards = (type) => {
@@ -128,7 +128,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header displayCards={this.displayCards} />
+        <Header displayCards={this.displayCards}
+                displaying={this.state.displaying} />
         <Controls  
             displaying={this.state.displaying} 
             displayCards={this.displayCards} />
