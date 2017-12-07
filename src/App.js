@@ -14,7 +14,8 @@ class App extends Component {
       displaying: null,
       people: [],
       planets: [],
-      vehicles: []
+      vehicles: [],
+      favorites: []
     }
   }
 
@@ -56,7 +57,8 @@ class App extends Component {
       let speciesData = await speciesFetch.json();
 
       return {
-        name: person.name, 
+        name: person.name,
+        type: 'people',
         data: {
           homeworld: homeworldData, 
           species: speciesData
@@ -86,6 +88,7 @@ class App extends Component {
 
       return {
         name: planet.name,
+        type: 'planets',
         data: {
           terrain: planet.terrain,
           climate: planet.climate,
@@ -105,6 +108,7 @@ class App extends Component {
     return vehiclesArray.results.map(vehicle => {
       return {
         name: vehicle.name,
+        type: 'vehicles',
         data: {
           model: vehicle.model,
           class: vehicle.vehicle_class,
@@ -114,14 +118,30 @@ class App extends Component {
     })
   }
 
+  updateFavorites = (card) => {
+    let favorites = this.state.favorites;
+    const favCard = favorites.find(fav => fav.name === card.name);
+
+    if (!favCard) {
+      favorites = [...this.state.favorites, card];  
+    } else {
+      favorites = favorites.filter(fav => fav.name !== card.name);
+    }
+    
+    this.setState( {favorites} );
+  }
+  
   displayCards = (type) => {
-    this.setState( {displaying: type.toLowerCase()} )
+    const displaying = type.toLowerCase();
+    
+    this.setState( {displaying} );
   }
 
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header displayCards={this.displayCards}
+                displaying={this.state.displaying} />
         <Controls  
             displaying={this.state.displaying} 
             displayCards={this.displayCards} />
@@ -132,6 +152,7 @@ class App extends Component {
         {
           this.state.people.length > 0 &&
           <CardContainer 
+            updateFavorites={this.updateFavorites}
             displaying={this.state.displaying}
             cards={this.state[this.state.displaying]} />
         }

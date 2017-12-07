@@ -8,10 +8,13 @@ const CardContainer = (props) => {
     mappedCards = props.cards.map((card, index) => {
       return (
         <Card 
-          cardData={card.data}
-          cardTitle={card.name} 
+          fav={false}
+          type={card.type}
+          data={card.data}
+          title={card.name} 
           key={`card-${index}`}
-          type={props.displaying} />
+          displaying={props.displaying} 
+          updateFavorites={props.updateFavorites} />
       )
     })
   } else {
