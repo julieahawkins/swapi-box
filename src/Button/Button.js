@@ -12,7 +12,7 @@ const Button = (props) => {
       className={`${buttonClass} ${props.name}`}
       onClick={() => {props.displayCards 
         ? props.displayCards(props.name) 
-        : props.updateFavorites(props.id)}}>
+        : props.updateFavorites({name: props.cardTitle, data: props.cardData})}}>
       {props.name}
     </button>
   )
