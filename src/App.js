@@ -58,7 +58,7 @@ class App extends Component {
 
       return {
         name: person.name,
-        type: 'people', 
+        type: 'people',
         data: {
           homeworld: homeworldData, 
           species: speciesData
@@ -119,8 +119,15 @@ class App extends Component {
   }
 
   updateFavorites = (card) => {
-    const favorites = this.state.favorites;
-    [...this.state.favorites, card]
+    let favorites = this.state.favorites;
+    const favCard = favorites.find(fav => fav.name === card.name);
+
+    if (!favCard) {
+      favorites = [...this.state.favorites, card];  
+    } else {
+      favorites = favorites.filter(fav => fav.name !== card.name);
+    }
+    
     this.setState( {favorites} );
   }
   
