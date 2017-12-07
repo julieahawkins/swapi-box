@@ -57,7 +57,8 @@ class App extends Component {
       let speciesData = await speciesFetch.json();
 
       return {
-        name: person.name, 
+        name: person.name,
+        type: 'people', 
         data: {
           homeworld: homeworldData, 
           species: speciesData
@@ -87,6 +88,7 @@ class App extends Component {
 
       return {
         name: planet.name,
+        type: 'planets',
         data: {
           terrain: planet.terrain,
           climate: planet.climate,
@@ -106,6 +108,7 @@ class App extends Component {
     return vehiclesArray.results.map(vehicle => {
       return {
         name: vehicle.name,
+        type: 'vehicles',
         data: {
           model: vehicle.model,
           class: vehicle.vehicle_class,
@@ -120,9 +123,11 @@ class App extends Component {
 
     this.setState( {favorites} );
   }
-
+  
   displayCards = (type) => {
-    this.setState( {displaying: type.toLowerCase()} )
+    const displaying = type.toLowerCase();
+    
+    this.setState( {displaying} );
   }
 
   render() {
