@@ -13,8 +13,8 @@ class App extends Component {
       currentFilm: {},
       displaying: null,
       people: [],
-      planets: []
-      // vehicles:
+      planets: [],
+      vehicles: []
     }
   }
 
@@ -22,8 +22,8 @@ class App extends Component {
     const currentFilm = await this.fetchFilm();
     const people = await this.fetchPeople();
     const planets = await this.fetchPlanets();
-    // const vehicles =
-    this.setState( {currentFilm, people, planets} );
+    const vehicles = await this.fetchVehicles();
+    this.setState( {currentFilm, people, planets, vehicles} );
   }
 
   async fetchFilm() {
@@ -96,6 +96,22 @@ class App extends Component {
     });
 
     return Promise.all(unresolvedPromises);
+  }
+
+  async fetchVehicles() {
+    const fetchedData = await fetch('https://swapi.co/api/vehicles/');
+    const vehiclesArray = await fetchedData.json();
+
+    return vehiclesArray.results.map(vehicle => {
+      return {
+        name: vehicle.name,
+        data: {
+          model: vehicle.model,
+          class: vehicle.vehicle_class,
+          passengers: vehicle.passengers
+        }
+      }
+    })
   }
 
   displayCards = (type) => {
