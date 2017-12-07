@@ -1,17 +1,17 @@
 import React from 'react';
 import Card from '../Card/Card';
-// import './CardContainer.css';
+import './CardContainer.css';
 
 const CardContainer = (props) => {
   let mappedCards = [];
   if (props.cards) {
-    mappedCards = props.cards.map((person, index) => {
+    mappedCards = props.cards.map((card, index) => {
       return (
         <Card 
+          cardData={card.data}
+          cardTitle={card.name} 
           key={`card-${index}`}
-          charName={person.name} 
-          data={person.data}
-           />
+          type={props.displaying} />
       )
     })
   } else {
