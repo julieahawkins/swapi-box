@@ -3,7 +3,7 @@ import Header from './Header/Header';
 import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
 import CardContainer from './CardContainer/CardContainer';
-import './App.css';
+// import './App.css';
 
 class App extends Component {
   constructor() {
