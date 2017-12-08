@@ -3,7 +3,6 @@ import Header from './Header/Header';
 import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
 import CardContainer from './CardContainer/CardContainer';
-// import './App.css';
 
 class App extends Component {
   constructor() {
@@ -61,7 +60,8 @@ class App extends Component {
         type: 'people',
         data: {
           homeworld: homeworldData, 
-          species: speciesData
+          species: speciesData,
+          fav: false
         }
       }
     });
@@ -93,7 +93,8 @@ class App extends Component {
           terrain: planet.terrain,
           climate: planet.climate,
           population: planet.population,
-          residents: residentsData
+          residents: residentsData,
+          fav: false
         }
       }
     });
@@ -112,21 +113,22 @@ class App extends Component {
         data: {
           model: vehicle.model,
           class: vehicle.vehicle_class,
-          passengers: vehicle.passengers
+          passengers: vehicle.passengers,
+          fav: false
         }
       }
     })
   }
 
   updateFavorites = (card) => {
+    card.data.fav = !card.data.fav
+    
     let favorites = this.state.favorites;
     const favCard = favorites.find(fav => fav.name === card.name);
 
-    if (!favCard) {
-      favorites = [...this.state.favorites, card];  
-    } else {
-      favorites = favorites.filter(fav => fav.name !== card.name);
-    }
+    favorites = !favCard 
+      ? [...this.state.favorites, card] 
+      : favorites.filter(fav => fav.name !== card.name);
     
     this.setState( {favorites} );
   }

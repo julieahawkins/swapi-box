@@ -8,7 +8,6 @@ const CardContainer = (props) => {
     mappedCards = props.cards.map((card, index) => {
       return (
         <Card 
-          fav={false}
           type={card.type}
           data={card.data}
           title={card.name} 
