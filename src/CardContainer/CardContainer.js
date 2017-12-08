@@ -19,10 +19,15 @@ const CardContainer = (props) => {
   } else {
     mappedCards = null;
   }
+  
   return (
     <div className='CardContainer'>
     {
       mappedCards
+    }
+    {
+      (props.displaying === 'favorites' && !props.cards.length) &&
+      <h1>You have no favorites... COLLECT SOME!</h1>
     }
     </div>
   )
