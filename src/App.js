@@ -33,7 +33,7 @@ class App extends Component {
   }
   
   updateFavorites = (card) => {
-    card.data.fav = !card.data.fav;
+    card.info.fav = !card.info.fav;
     
     let favorites = this.state.favorites;
     const favCard = favorites.find(fav => fav.name === card.name);
