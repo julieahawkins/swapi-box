@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Scroll from './Scroll';
 
 describe('Scroll test', () => {
@@ -8,5 +7,5 @@ describe('Scroll test', () => {
     const renderedScroll = shallow(<Scroll currentFilm={{}}/>);
 
     expect(renderedScroll.find('.Scroll').length).toEqual(1);
-  })
-})
+  });
+});
