@@ -29,14 +29,14 @@ const Button = (props) => {
 };
 
 Button.propTypes ={
-  displaying: PropTypes.string,
   name: PropTypes.string,
   cardFav: PropTypes.bool,
-  displayCards: PropTypes.func,
-  updateFavorites: PropTypes.func,
   cardType: PropTypes.string,
+  cardData: PropTypes.object,
   cardTitle: PropTypes.string,
-  cardData: PropTypes.object
+  displaying: PropTypes.string,
+  displayCards: PropTypes.func,
+  updateFavorites: PropTypes.func
 };
 
 export default Button;
