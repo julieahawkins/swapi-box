@@ -8,7 +8,6 @@ const CardContainer = (props) => {
     mappedCards = props.cards.map((card, index) => {
       return (
         <Card 
-          fav={false}
           type={card.type}
           data={card.data}
           title={card.name} 
@@ -20,10 +19,15 @@ const CardContainer = (props) => {
   } else {
     mappedCards = null;
   }
+  
   return (
     <div className='CardContainer'>
     {
       mappedCards
+    }
+    {
+      (props.displaying === 'favorites' && !props.cards.length) &&
+      <h1>You have no favorites... COLLECT SOME!</h1>
     }
     </div>
   )

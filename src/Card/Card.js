@@ -3,6 +3,10 @@ import Button from '../Button/Button';
 import './Card.css';
 
 const Card = (props) => {
+  const cardClass = !props.data.fav 
+    ? 'Card'
+    : 'Card favorite';
+
   let mappedResidents;
   if (props.type === 'planets') {
     mappedResidents = props.data.residents.map((resident, index) => {
@@ -11,13 +15,14 @@ const Card = (props) => {
       )
     })
   }
-  
+
   return (
-    <div className="Card">
+    <div className={cardClass}>
       <Button name='*'
               cardTitle={props.title}
               cardData ={props.data}
               cardType={props.type}
+              cardFav={props.data.fav}
               updateFavorites={props.updateFavorites}/>
       <p>Name: {props.title}</p>
       {
