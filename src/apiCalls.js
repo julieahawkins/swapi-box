@@ -30,7 +30,7 @@ const fetchPeopleData = async(peopleArray) => {
     return {
       name: person.name,
       type: 'people',
-      data: {
+      info: {
         homeworld: homeworldData, 
         species: speciesData,
         fav: false
@@ -61,7 +61,7 @@ const fetchPlanetData = async(planetArray) => {
     return {
       name: planet.name,
       type: 'planets',
-      data: {
+      info: {
         terrain: planet.terrain,
         climate: planet.climate,
         population: planet.population,
@@ -82,7 +82,7 @@ export const fetchVehicles = async() => {
     return {
       name: vehicle.name,
       type: 'vehicles',
-      data: {
+      info: {
         model: vehicle.model,
         class: vehicle.vehicle_class,
         passengers: vehicle.passengers,

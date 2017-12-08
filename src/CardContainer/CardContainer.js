@@ -10,7 +10,7 @@ const CardContainer = (props) => {
       return (
         <Card 
           type={card.type}
-          data={card.data}
+          info={card.info}
           title={card.name} 
           key={`card-${index}`}
           displaying={props.displaying} 

@@ -20,7 +20,7 @@ const Button = (props) => {
           : props.updateFavorites({
             type: props.cardType,
             name: props.cardTitle, 
-            data: props.cardData
+            info: props.cardData
           });
       }}>
       {props.name}
