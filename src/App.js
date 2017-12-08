@@ -32,7 +32,7 @@ class App extends Component {
     this.setState( {currentFilm, people, planets, vehicles} );
   }
   
-  updateFavorites = (card) => {
+  updateFavorites = (type, card) => {
     card.info.fav = !card.info.fav;
     
     let favorites = this.state.favorites;
@@ -45,7 +45,7 @@ class App extends Component {
     this.setState( {favorites} );
   }
   
-  displayCards = (type) => {
+  displayCards = (type, card) => {
     const displaying = type.toLowerCase();
     
     this.setState( {displaying} );

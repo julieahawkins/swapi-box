@@ -10,19 +10,21 @@ const Button = (props) => {
   const buttonFav = props.cardFav 
     ? 'favorite'
     : null;
+    
+  const card = {
+    type: props.cardType,
+    name: props.cardTitle, 
+    info: props.cardData
+  }
+
+  const handleClick = props.displayCards 
+    ? props.displayCards 
+    : props.updateFavorites;
 
   return (
     <button 
       className={`${buttonClass} ${props.name} ${buttonFav}`}
-      onClick={() => { 
-        props.displayCards 
-          ? props.displayCards(props.name) 
-          : props.updateFavorites({
-            type: props.cardType,
-            name: props.cardTitle, 
-            info: props.cardData
-          });
-      }}>
+      onClick={() => {handleClick(props.name, card)}}>
       {props.name}
     </button>
   );
