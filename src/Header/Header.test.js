@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Header from './Header';
 
 describe('Header test', () => {
@@ -8,5 +7,5 @@ describe('Header test', () => {
     const renderedHeader = shallow(<Header />);
 
     expect(renderedHeader.find('.Header').length).toEqual(1);
-  })
-})
+  });
+});

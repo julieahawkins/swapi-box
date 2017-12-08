@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Scroll.css';
 
 const Scroll = ({currentFilm}) => {
@@ -10,7 +11,7 @@ const Scroll = ({currentFilm}) => {
     5: 'V',
     6: 'VI',
     7: 'VII'
-  }
+  };
 
   return (
     <div className='scroll-container'>
@@ -22,7 +23,11 @@ const Scroll = ({currentFilm}) => {
         <p>Released: {currentFilm.releaseDate}</p>
       </div>
     </div>
-  )
-}
+  );
+};
+
+Scroll.propTypes = {
+  currentFilm: PropTypes.object
+};
 
 export default Scroll;

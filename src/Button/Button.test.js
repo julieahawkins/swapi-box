@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Button from './Button';
 
 describe('Button test', () => {
@@ -8,5 +7,5 @@ describe('Button test', () => {
     const renderedButton = shallow(<Button name={'Hoth'}/>);
 
     expect(renderedButton.find('.Button').length).toEqual(1);
-  })
-})
+  });
+});

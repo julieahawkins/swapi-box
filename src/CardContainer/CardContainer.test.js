@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import CardContainer from './CardContainer';
 
 describe('CardContainer test', () => {
@@ -8,5 +7,5 @@ describe('CardContainer test', () => {
     const renderedCardContainer = shallow(<CardContainer />);
 
     expect(renderedCardContainer.find('.CardContainer').length).toEqual(1);
-  })
-})
+  });
+});

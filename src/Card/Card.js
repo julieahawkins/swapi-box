@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button';
+import PropTypes from 'prop-types';
 import './Card.css';
 
 const Card = (props) => {
@@ -12,18 +13,19 @@ const Card = (props) => {
     mappedResidents = props.data.residents.map((resident, index) => {
       return (
         <li key={`li-${index}`}>{resident}</li>
-      )
-    })
+      );
+    });
   }
 
   return (
     <div className={cardClass}>
-      <Button name='*'
-              cardTitle={props.title}
-              cardData ={props.data}
-              cardType={props.type}
-              cardFav={props.data.fav}
-              updateFavorites={props.updateFavorites}/>
+      <Button 
+        name='*'
+        cardTitle={props.title}
+        cardData ={props.data}
+        cardType={props.type}
+        cardFav={props.data.fav}
+        updateFavorites={props.updateFavorites}/>
       <p>Name: {props.title}</p>
       {
         props.type === 'people' &&
@@ -56,7 +58,14 @@ const Card = (props) => {
           </div>
       }
     </div>  
-  )
-}
+  );
+};
+
+Card.propTypes = {
+  data: PropTypes.object,
+  type: PropTypes.string,
+  title: PropTypes.string,
+  updateFavorites: PropTypes.func
+};
 
 export default Card;

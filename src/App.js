@@ -3,7 +3,12 @@ import Header from './Header/Header';
 import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
 import CardContainer from './CardContainer/CardContainer';
-import { fetchFilm, fetchPeople, fetchPlanets, fetchVehicles } from './apiCalls';
+import { 
+  fetchFilm, 
+  fetchPeople, 
+  fetchPlanets, 
+  fetchVehicles 
+} from './apiCalls';
 
 class App extends Component {
   constructor() {
@@ -16,7 +21,7 @@ class App extends Component {
       planets: [],
       vehicles: [],
       favorites: []
-    }
+    };
   }
 
   async componentDidMount() {
@@ -28,7 +33,7 @@ class App extends Component {
   }
   
   updateFavorites = (card) => {
-    card.data.fav = !card.data.fav
+    card.data.fav = !card.data.fav;
     
     let favorites = this.state.favorites;
     const favCard = favorites.find(fav => fav.name === card.name);
@@ -49,11 +54,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header displayCards={this.displayCards}
-                displaying={this.state.displaying} />
+        <Header 
+          displayCards={this.displayCards}
+          displaying={this.state.displaying} />
         <Controls  
-            displaying={this.state.displaying} 
-            displayCards={this.displayCards} />
+          displaying={this.state.displaying} 
+          displayCards={this.displayCards} />
         {
           this.state.currentFilm &&
           <Scroll currentFilm={this.state.currentFilm} />
