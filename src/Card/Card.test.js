@@ -5,7 +5,7 @@ import Card from './Card';
 
 describe('Card test', () => {
   it('should render correctly', () => {
-    const renderedCard = shallow(<Card />);
+    const renderedCard = shallow(<Card data={{}}/>);
 
     expect(renderedCard.find('.Card').length).toEqual(1);
   })
