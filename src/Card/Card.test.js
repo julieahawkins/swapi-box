@@ -7,5 +7,6 @@ describe('Card test', () => {
     const renderedCard = shallow(<Card data={{}}/>);
 
     expect(renderedCard.find('.Card').length).toEqual(1);
+    expect(renderedCard.find('span').length).toEqual(4);
   });
 });
