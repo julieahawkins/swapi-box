@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-const Card = ({ card, displaying, updateFavorites }) => {
+const Card = ({ card, updateFavorites }) => {
   const cardClass = !card.info.fav 
     ? 'Card'
     : 'Card favorite';
@@ -23,10 +23,10 @@ const Card = ({ card, displaying, updateFavorites }) => {
   if (card.type === 'planets') {
     const mappedResidents = card.info.residents.length > 0 
       ? card.info.residents.map((resident, index) => {
-          return (
-            <li key={`li-${index}`}>{resident}</li>
-          );
-        })
+        return (
+          <li key={`li-${index}`}>{resident}</li>
+        );
+      })
       : <li>N/A</li>;
 
     cardInfo1 = `Terrain: ${card.info.terrain}`;

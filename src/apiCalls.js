@@ -1,8 +1,33 @@
-export const fetchFilm = async() => {
-  const randomFilm = Math.floor(Math.random() * 7) + 1;
-  const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
-  const filmData = await fetchedData.json();
 
+
+export const fetchAPI = async(type, url) => {
+  const initialFetch = await fetch(url);
+  const fetchedData = await initialFetch.json();
+
+  return await handleByType(type, fetchedData);
+};
+
+const handleByType = async(type, fetchedData) => {
+  let dataResult;
+  if (type === 'film') {
+    dataResult = cleanFilmData(fetchedData);
+  }
+  if (type === 'people') {
+    dataResult = await fetchPeopleData(fetchedData.results);
+  }
+  if (type === 'planets') {
+    dataResult = await fetchPlanetData(fetchedData.results);
+  }
+  if (type === 'vehicles') {
+    dataResult = cleanVehiclesData(fetchedData);
+  }
+  if (type === 'person') {
+    dataResult = fetchedData;
+  }
+  return dataResult;
+};
+
+const cleanFilmData = (filmData) => {
   const numerals = {
     1: 'I',
     2: 'II',
@@ -14,90 +39,82 @@ export const fetchFilm = async() => {
   };
 
   const currentFilm = {
-    title: filmData.title.toUpperCase(),
+    title: filmData.title,
     crawlText: filmData.opening_crawl, 
     episodeNum: numerals[filmData.episode_id], 
     releaseDate: filmData.release_date
   };
+
   return currentFilm;
-};
-
-export const fetchPeople = async() => {
-  const fetchedData = await fetch(`https://swapi.co/api/people/`);
-  const peopleArray = await fetchedData.json();
-
-  return await fetchPeopleData(peopleArray.results);
 };
 
 const fetchPeopleData = async(peopleArray) => {
   const unresolvedPromises = peopleArray.map(async(person) => {
-    let homeworldFetch = await fetch(person.homeworld);
-    let homeworldData = await homeworldFetch.json();
+    const homeworld = await fetchAPI('person', person.homeworld);
+    const species = await fetchAPI('person', person.species);
 
-    let speciesFetch = await fetch(person.species);
-    let speciesData = await speciesFetch.json();
-
-    return {
+    const character = {
       name: person.name,
       type: 'people',
       info: {
-        homeworld: homeworldData, 
-        species: speciesData,
-        fav: false
+        fav: false,
+        homeworld, 
+        species
       }
     };
+
+    return character;
   });
 
   return Promise.all(unresolvedPromises);
-};
-
-export const fetchPlanets = async() => {
-  const fetchedData = await fetch(`https://swapi.co/api/planets/`);
-  const planetArray = await fetchedData.json();
-
-  return await fetchPlanetData(planetArray.results);
 };
 
 const fetchPlanetData = async(planetArray) => {
   const unresolvedPromises = planetArray.map(async(planet) => {
-    let residentArray = planet.residents.map(async(resident) => {
-      let residentFetch = await fetch(resident);
-      let residentData = await residentFetch.json();
-      return residentData.name;
-    });
-
-    let residentsData = await Promise.all(residentArray);
-
-    return {
+    let residentArray = await fetchResidents(planet);
+    
+    let planetData = {
       name: planet.name,
       type: 'planets',
       info: {
+        fav: false,
         terrain: planet.terrain,
         climate: planet.climate,
         population: planet.population,
-        residents: residentsData,
-        fav: false
+        residents: residentArray
       }
     };
+
+    return planetData;
   });
 
   return Promise.all(unresolvedPromises);
 };
 
-export const fetchVehicles = async() => {
-  const fetchedData = await fetch('https://swapi.co/api/vehicles/');
-  const vehiclesArray = await fetchedData.json();
+const fetchResidents = async(planet) => {
+  let residentPromises = planet.residents.map(async(resident) => {
+    let residentData = await fetchAPI('person', resident);
 
-  return vehiclesArray.results.map(vehicle => {
+    return residentData.name;
+  });
+
+  return await Promise.all(residentPromises);
+};
+
+const cleanVehiclesData = (vehiclesArray) => {
+  const vehicles = vehiclesArray.results.map(vehicle => {
     return {
       name: vehicle.name,
       type: 'vehicles',
       info: {
+        fav: false,
         model: vehicle.model,
         class: vehicle.vehicle_class,
-        passengers: vehicle.passengers,
-        fav: false
+        passengers: vehicle.passengers
       }
     };
   });
+
+  return vehicles;
 };
+

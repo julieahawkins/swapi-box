@@ -3,12 +3,7 @@ import Header from './Header/Header';
 import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
 import CardContainer from './CardContainer/CardContainer';
-import { 
-  fetchFilm, 
-  fetchPeople, 
-  fetchPlanets, 
-  fetchVehicles 
-} from './apiCalls';
+import { fetchAPI } from './apiCalls';
 
 class App extends Component {
   constructor() {
@@ -22,13 +17,21 @@ class App extends Component {
       vehicles: [],
       favorites: []
     };
+
+    this.randomFilm = Math.floor(Math.random() * 7) + 1;
+    this.apiCalls = {
+      film: `https://swapi.co/api/films/${this.randomFilm}/`,
+      people: 'https://swapi.co/api/people/',
+      planets: 'https://swapi.co/api/planets/',
+      vehicles: 'https://swapi.co/api/vehicles/'
+    };
   }
 
   async componentDidMount() {
-    const currentFilm = await fetchFilm();
-    const people = await fetchPeople();
-    const planets = await fetchPlanets();
-    const vehicles = await fetchVehicles();
+    const currentFilm = await fetchAPI('film', this.apiCalls.film);
+    const people = await fetchAPI('people', this.apiCalls.people);
+    const planets = await fetchAPI('planets', this.apiCalls.planets);
+    const vehicles = await fetchAPI('vehicles', this.apiCalls.vehicles);
 
     this.setState( {currentFilm, people, planets, vehicles} );
   }
@@ -50,7 +53,7 @@ class App extends Component {
     card.info.fav = !card.info.fav; 
   }
   
-  displayCards = (type, card) => {
+  displayCards = (type) => {
     const displaying = type.toLowerCase();
     
     this.setState( {displaying} );
