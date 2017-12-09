@@ -40,7 +40,7 @@ const cleanFilmData = (filmData) => {
   };
 
   const currentFilm = {
-    title: filmData.title.toUpperCase(),
+    title: filmData.title,
     crawlText: filmData.opening_crawl, 
     episodeNum: numerals[filmData.episode_id], 
     releaseDate: filmData.release_date
@@ -49,28 +49,26 @@ const cleanFilmData = (filmData) => {
   return currentFilm;
 };
 
-/* people-handling */
-
 const fetchPeopleData = async(peopleArray) => {
   const unresolvedPromises = peopleArray.map(async(person) => {
+    const homeworld = await fetchAPI('person', person.homeworld);
+    const species = await fetchAPI('person', person.species);
+
     const character = {
       name: person.name,
       type: 'people',
       info: {
-        homeworld: await fetchAPI('person', person.homeworld), 
-        species: await fetchAPI('person', person.species),
-        fav: false
+        fav: false,
+        homeworld, 
+        species
       }
     };
+
     return character;
   });
 
   return Promise.all(unresolvedPromises);
 };
-
-
-
-/* planet-handling */
 
 const fetchPlanetData = async(planetArray) => {
   const unresolvedPromises = planetArray.map(async(planet) => {
@@ -80,11 +78,11 @@ const fetchPlanetData = async(planetArray) => {
       name: planet.name,
       type: 'planets',
       info: {
+        fav: false,
         terrain: planet.terrain,
         climate: planet.climate,
         population: planet.population,
-        residents: residentArray,
-        fav: false
+        residents: residentArray
       }
     };
 
@@ -104,21 +102,16 @@ const fetchResidents = async(planet) => {
   return await Promise.all(residentPromises);
 }
 
-
-
-
-/* vehicle-handling */
-
 const cleanVehiclesData = (vehiclesArray) => {
   const vehicles = vehiclesArray.results.map(vehicle => {
     return {
       name: vehicle.name,
       type: 'vehicles',
       info: {
+        fav: false,
         model: vehicle.model,
         class: vehicle.vehicle_class,
-        passengers: vehicle.passengers,
-        fav: false
+        passengers: vehicle.passengers
       }
     };
   });
