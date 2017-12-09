@@ -54,8 +54,8 @@ const fetchPeopleData = async(peopleArray) => {
       name: person.name,
       type: 'people',
       info: {
-        homeworld: await fetchHomeworld(person), 
-        species: await fetchSpecies(person),
+        homeworld: await fetchPersonData(person.homeworld), 
+        species: await fetchPersonData(person.species),
         fav: false
       }
     };
@@ -65,19 +65,13 @@ const fetchPeopleData = async(peopleArray) => {
   return Promise.all(unresolvedPromises);
 };
 
-const fetchHomeworld = async(person) => {
-  const homeworldFetch = await fetch(person.homeworld);
-  const homeworldData = await homeworldFetch.json();
+const fetchPersonData = async(url) => {
+  const fetchedData = await fetch(url);
+  const personData = await fetchedData.json();
 
-  return homeworldData;
+  return personData;
 };
 
-const fetchSpecies = async(person) => {
-  const speciesFetch = await fetch(person.species);
-  const speciesData = await speciesFetch.json();
-
-  return speciesData;
-};
 
 
 /* planet-handling */
@@ -106,8 +100,8 @@ const fetchPlanetData = async(planetArray) => {
 
 const fetchResidents = async(planet) => {
   let residentPromises = planet.residents.map(async(resident) => {
-      let residentFetch = await fetch(resident);
-      let residentData = await residentFetch.json();
+      let residentData = await fetchPersonData(resident)
+      
       return residentData.name;
     });
 
