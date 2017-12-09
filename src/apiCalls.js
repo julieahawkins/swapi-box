@@ -1,10 +1,8 @@
-/* initial fetch handling */
-
 export const fetchAPI = async(type, url) => {
   const initialFetch = await fetch(url);
   const fetchedData = await initialFetch.json();
 
-  return await handleByType(type, fetchedData)
+  return await handleByType(type, fetchedData);
 };
 
 const handleByType = async(type, fetchedData) => {
@@ -15,7 +13,7 @@ const handleByType = async(type, fetchedData) => {
   if (type === 'people') {
     dataResult = await fetchPeopleData(fetchedData.results);
   }
-  if(type === 'planets') {
+  if (type === 'planets') {
     dataResult = await fetchPlanetData(fetchedData.results);
   }
   if (type === 'vehicles') {
@@ -24,8 +22,8 @@ const handleByType = async(type, fetchedData) => {
   if (type === 'person') {
     dataResult = fetchedData;
   }
-  return dataResult
-}
+  return dataResult;
+};
 
 
 /* film-handling */
@@ -96,13 +94,13 @@ const fetchPlanetData = async(planetArray) => {
 
 const fetchResidents = async(planet) => {
   let residentPromises = planet.residents.map(async(resident) => {
-      let residentData = await fetchAPI('person', resident)
+    let residentData = await fetchAPI('person', resident);
 
-      return residentData.name;
-    });
+    return residentData.name;
+  });
 
   return await Promise.all(residentPromises);
-}
+};
 
 const cleanVehiclesData = (vehiclesArray) => {
   const vehicles = vehiclesArray.results.map(vehicle => {
@@ -119,4 +117,5 @@ const cleanVehiclesData = (vehiclesArray) => {
   });
 
   return vehicles;
-}
+};
+

@@ -21,7 +21,6 @@ class App extends Component {
 
   async componentDidMount() {
     const randomFilm = Math.floor(Math.random() * 7) + 1;
-
     const currentFilm = await fetchAPI('film', `https://swapi.co/api/films/${randomFilm}/`);
     const people = await fetchAPI('people', 'https://swapi.co/api/people/');
     const planets = await fetchAPI('planets', 'https://swapi.co/api/planets/');
