@@ -7,14 +7,47 @@ const Card = (props) => {
   const cardClass = !props.info.fav 
     ? 'Card'
     : 'Card favorite';
-
-  let mappedResidents;
-  if (props.type === 'planets') {
-    mappedResidents = props.info.residents.map((resident, index) => {
+    
+  const renderCard = (cardType) => {
+    if (cardType === 'people') {
       return (
-        <li key={`li-${index}`}>{resident}</li>
-      );
-    });
+        <div className={`${props.type}-cards-container`}>
+          <p>Species: {props.info.species.name}</p>
+          <p>Language: {props.info.species.language}</p>
+          <p>Homeworld: {props.info.homeworld.name}</p>
+          <p>Population: {props.info.homeworld.population}</p>
+        </div>
+      )
+    } else if (cardType === 'planets') {
+      const mappedResidents = props.info.residents.length > 0 
+        ? props.info.residents.map((resident, index) => {
+            return (
+              <li key={`li-${index}`}>{resident}</li>
+            );
+          })
+        : <li>N/A</li>;
+
+      return (
+        <div className={`${props.type}-cards-container`}>
+          <p>Terrain: {props.info.terrain}</p>
+          <p>Climate: {props.info.climate}</p>
+          <p>Population: {props.info.population}</p>
+          <ul>Residents:
+            {
+              mappedResidents
+            }
+          </ul>
+        </div>
+      )
+    } else if (cardType === 'vehicles') {
+      return (
+        <div className={`${props.type}-cards-container`}>
+          <p>Model: {props.info.model}</p>
+          <p>Class: {props.info.class}</p>
+          <p>Passengers: {props.info.passengers}</p>
+        </div>
+      )
+    }
   }
 
   return (
@@ -28,36 +61,9 @@ const Card = (props) => {
         updateFavorites={props.updateFavorites}/>
       <p>Name: {props.title}</p>
       {
-        props.type === 'people' &&
-          <div className={`${props.type}-cards-container`}>
-            <p>Species: {props.info.species.name}</p>
-            <p>Language: {props.info.species.language}</p>
-            <p>Homeworld: {props.info.homeworld.name}</p>
-            <p>Population: {props.info.homeworld.population}</p>
-          </div>
+        renderCard(props.type)
       }
-      {
-        props.type === 'planets' &&
-          <div className={`${props.type}-cards-container`}>
-            <p>Terrain: {props.info.terrain}</p>
-            <p>Climate: {props.info.climate}</p>
-            <p>Population: {props.info.population}</p>
-            <ul>
-              {
-                mappedResidents
-              }
-            </ul>
-          </div>
-      }
-      {
-        props.type === 'vehicles' &&
-          <div className={`${props.type}-cards-container`}>
-            <p>Model: {props.info.model}</p>
-            <p>Class: {props.info.class}</p>
-            <p>Passengers: {props.info.passengers}</p>
-          </div>
-      }
-    </div>  
+    </div>
   );
 };
 
