@@ -40,7 +40,7 @@ class App extends Component {
     this.toggleFav(card);
 
     favorites = !favCard 
-      ? [...this.state.favorites, card] 
+      ? [...favorites, card] 
       : favorites.filter(fav => fav.name !== card.name);
     
     this.setState( {favorites} );
