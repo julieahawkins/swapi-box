@@ -8,61 +8,55 @@ const Card = ({ card, displaying, updateFavorites }) => {
     ? 'Card'
     : 'Card favorite';
 
-  const renderCard = (cardType) => {
-    if (cardType === 'people') {
-      return (
-        <div className={`${card.type}-cards-container`}>
-          <p>Species: {card.info.species.name}</p>
-          <p>Language: {card.info.species.language}</p>
-          <p>Homeworld: {card.info.homeworld.name}</p>
-          <p>Population: {card.info.homeworld.population}</p>
-        </div>
-      )
-    } else if (cardType === 'planets') {
-      const mappedResidents = card.info.residents.length > 0 
-        ? card.info.residents.map((resident, index) => {
-            return (
-              <li key={`li-${index}`}>{resident}</li>
-            );
-          })
-        : <li>N/A</li>;
+  let cardInfo1;
+  let cardInfo2;
+  let cardInfo3;
+  let cardInfo4;
 
-      return (
-        <div className={`${card.type}-cards-container`}>
-          <p>Terrain: {card.info.terrain}</p>
-          <p>Climate: {card.info.climate}</p>
-          <p>Population: {card.info.population}</p>
-          <ul>Residents:
-            {
-              mappedResidents
-            }
-          </ul>
-        </div>
-      )
-    } else if (cardType === 'vehicles') {
-      return (
-        <div className={`${card.type}-cards-container`}>
-          <p>Model: {card.info.model}</p>
-          <p>Class: {card.info.class}</p>
-          <p>Passengers: {card.info.passengers}</p>
-        </div>
-      )
-    }
+  if (card.type === 'people') {
+    cardInfo1 = `Species: ${card.info.species.name}`;
+    cardInfo2 = `Language: ${card.info.species.language}`;
+    cardInfo3 = `Homeworld: ${card.info.homeworld.name}`;
+    cardInfo4 = `Population: ${card.info.homeworld.population}`;
+  }
+
+  if (card.type === 'planets') {
+    const mappedResidents = card.info.residents.length > 0 
+      ? card.info.residents.map((resident, index) => {
+          return (
+            <li key={`li-${index}`}>{resident}</li>
+          );
+        })
+      : <li>N/A</li>;
+
+    cardInfo1 = `Terrain: ${card.info.terrain}`;
+    cardInfo2 = `Climate: ${card.info.climate}`;
+    cardInfo3 = `Population: ${card.info.population}`;
+    cardInfo4 = <ul>Residents: {mappedResidents}</ul>;
+  }
+
+  if (card.type === 'vehicles') {
+    cardInfo1 = `Model: ${card.info.model}`;
+    cardInfo2 = `Class: ${card.info.class}`;
+    cardInfo3 = `Passengers: ${card.info.passengers}`;
   }
 
   return (
     <div className={cardClass}>
       <Button 
         name='*'
-        cardTitle={card.name}
-        cardData ={card.info}
+        cardName={card.name}
+        cardInfo={card.info}
         cardType={card.type}
         cardFav={card.info.fav}
         updateFavorites={updateFavorites}/>
       <p>Name: {card.name}</p>
-      {
-        renderCard(card.type)
-      }
+      <div className={`${card.type}-cards-container`}>
+        <span>{cardInfo1}</span>
+        <span>{cardInfo2}</span>
+        <span>{cardInfo3}</span>
+        <span>{cardInfo4}</span>
+      </div>
     </div>
   );
 };
