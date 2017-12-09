@@ -3,12 +3,7 @@ import Header from './Header/Header';
 import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
 import CardContainer from './CardContainer/CardContainer';
-import { 
-  fetchFilm, 
-  fetchPeople, 
-  fetchPlanets, 
-  fetchVehicles 
-} from './apiCalls';
+import { fetchAPI } from './apiCalls';
 
 class App extends Component {
   constructor() {
@@ -25,10 +20,12 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const currentFilm = await fetchFilm();
-    const people = await fetchPeople();
-    const planets = await fetchPlanets();
-    const vehicles = await fetchVehicles();
+    const randomFilm = Math.floor(Math.random() * 7) + 1;
+
+    const currentFilm = await fetchAPI('film', `https://swapi.co/api/films/${randomFilm}/`);
+    const people = await fetchAPI('people', 'https://swapi.co/api/people/');
+    const planets = await fetchAPI('planets', 'https://swapi.co/api/planets/');
+    const vehicles = await fetchAPI('vehicles', 'https://swapi.co/api/vehicles/');
 
     this.setState( {currentFilm, people, planets, vehicles} );
   }
