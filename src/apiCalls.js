@@ -1,3 +1,5 @@
+
+
 export const fetchAPI = async(type, url) => {
   const initialFetch = await fetch(url);
   const fetchedData = await initialFetch.json();
@@ -24,9 +26,6 @@ const handleByType = async(type, fetchedData) => {
   }
   return dataResult;
 };
-
-
-/* film-handling */
 
 const cleanFilmData = (filmData) => {
   const numerals = {
