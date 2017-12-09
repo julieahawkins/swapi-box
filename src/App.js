@@ -29,20 +29,25 @@ class App extends Component {
     const people = await fetchPeople();
     const planets = await fetchPlanets();
     const vehicles = await fetchVehicles();
+
     this.setState( {currentFilm, people, planets, vehicles} );
   }
   
   updateFavorites = (type, card) => {
-    card.info.fav = !card.info.fav;
-    
     let favorites = this.state.favorites;
     const favCard = favorites.find(fav => fav.name === card.name);
+
+    this.toggleFav(card);
 
     favorites = !favCard 
       ? [...this.state.favorites, card] 
       : favorites.filter(fav => fav.name !== card.name);
     
     this.setState( {favorites} );
+  }
+
+  toggleFav = (card) => {
+    card.info.fav = !card.info.fav; 
   }
   
   displayCards = (type, card) => {
@@ -59,8 +64,7 @@ class App extends Component {
           displaying={this.state.displaying} />
         <Controls  
           displaying={this.state.displaying} 
-          displayCards={this.displayCards} />
-       
+          displayCards={this.displayCards} />       
         <Scroll currentFilm={this.state.currentFilm} />    
         <CardContainer 
           updateFavorites={this.updateFavorites}
