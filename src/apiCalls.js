@@ -20,6 +20,9 @@ const handleByType = async(type, fetchedData) => {
   if (type === 'vehicles') {
     return cleanVehiclesData(fetchedData);
   }
+  if (type === 'person') {
+    return fetchedData
+  }
 }
 
 
@@ -54,8 +57,8 @@ const fetchPeopleData = async(peopleArray) => {
       name: person.name,
       type: 'people',
       info: {
-        homeworld: await fetchPersonData(person.homeworld), 
-        species: await fetchPersonData(person.species),
+        homeworld: await fetchAPI('person', person.homeworld), 
+        species: await fetchAPI('person', person.species),
         fav: false
       }
     };
@@ -63,13 +66,6 @@ const fetchPeopleData = async(peopleArray) => {
   });
 
   return Promise.all(unresolvedPromises);
-};
-
-const fetchPersonData = async(url) => {
-  const fetchedData = await fetch(url);
-  const personData = await fetchedData.json();
-
-  return personData;
 };
 
 
@@ -100,8 +96,8 @@ const fetchPlanetData = async(planetArray) => {
 
 const fetchResidents = async(planet) => {
   let residentPromises = planet.residents.map(async(resident) => {
-      let residentData = await fetchPersonData(resident)
-      
+      let residentData = await fetchAPI('person', resident)
+
       return residentData.name;
     });
 
