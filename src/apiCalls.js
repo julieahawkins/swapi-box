@@ -3,10 +3,20 @@ export const fetchFilm = async() => {
   const fetchedData = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
   const filmData = await fetchedData.json();
 
+  const numerals = {
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII'
+  };
+
   const currentFilm = {
     title: filmData.title.toUpperCase(),
     crawlText: filmData.opening_crawl, 
-    episodeNum: filmData.episode_id, 
+    episodeNum: numerals[filmData.episode_id], 
     releaseDate: filmData.release_date
   };
   return currentFilm;

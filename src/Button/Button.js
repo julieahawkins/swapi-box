@@ -13,8 +13,8 @@ const Button = (props) => {
     
   const card = {
     type: props.cardType,
-    name: props.cardTitle, 
-    info: props.cardData
+    name: props.cardName, 
+    info: props.cardInfo
   }
 
   const handleClick = props.displayCards 
@@ -34,8 +34,8 @@ Button.propTypes ={
   name: PropTypes.string,
   cardFav: PropTypes.bool,
   cardType: PropTypes.string,
-  cardData: PropTypes.object,
-  cardTitle: PropTypes.string,
+  cardInfo: PropTypes.object,
+  cardName: PropTypes.string,
   displaying: PropTypes.string,
   displayCards: PropTypes.func,
   updateFavorites: PropTypes.func

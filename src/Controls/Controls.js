@@ -4,20 +4,21 @@ import PropTypes from 'prop-types';
 import './Controls.css';
 
 const Controls = (props) => {
+  const buttonNames = ['People', 'Planets', 'Vehicles'];
+
+  const buttonsToRender = buttonNames.map((button, index) => {
+    return (
+      <Button
+        name={button}
+        key={`button-${index}`}
+        displaying={props.displaying} 
+        displayCards={props.displayCards} />
+    );
+  });
+
   return (
     <div className='Controls'>
-      <Button 
-        name='People' 
-        displayCards={props.displayCards} 
-        displaying={props.displaying} />
-      <Button 
-        name='Planets' 
-        displayCards={props.displayCards} 
-        displaying={props.displaying} />
-      <Button 
-        name='Vehicles' 
-        displayCards={props.displayCards} 
-        displaying={props.displaying} />
+      {buttonsToRender}
     </div>
   );
 };

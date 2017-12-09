@@ -3,68 +3,66 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-const Card = (props) => {
-  const cardClass = !props.info.fav 
+const Card = ({ card, displaying, updateFavorites }) => {
+  const cardClass = !card.info.fav 
     ? 'Card'
     : 'Card favorite';
 
-  let mappedResidents;
-  if (props.type === 'planets') {
-    mappedResidents = props.info.residents.map((resident, index) => {
-      return (
-        <li key={`li-${index}`}>{resident}</li>
-      );
-    });
+  let cardInfo1;
+  let cardInfo2;
+  let cardInfo3;
+  let cardInfo4;
+
+  if (card.type === 'people') {
+    cardInfo1 = `Species: ${card.info.species.name}`;
+    cardInfo2 = `Language: ${card.info.species.language}`;
+    cardInfo3 = `Homeworld: ${card.info.homeworld.name}`;
+    cardInfo4 = `Population: ${card.info.homeworld.population}`;
+  }
+
+  if (card.type === 'planets') {
+    const mappedResidents = card.info.residents.length > 0 
+      ? card.info.residents.map((resident, index) => {
+          return (
+            <li key={`li-${index}`}>{resident}</li>
+          );
+        })
+      : <li>N/A</li>;
+
+    cardInfo1 = `Terrain: ${card.info.terrain}`;
+    cardInfo2 = `Climate: ${card.info.climate}`;
+    cardInfo3 = `Population: ${card.info.population}`;
+    cardInfo4 = <ul>Residents: {mappedResidents}</ul>;
+  }
+
+  if (card.type === 'vehicles') {
+    cardInfo1 = `Model: ${card.info.model}`;
+    cardInfo2 = `Class: ${card.info.class}`;
+    cardInfo3 = `Passengers: ${card.info.passengers}`;
   }
 
   return (
     <div className={cardClass}>
       <Button 
         name='*'
-        cardTitle={props.title}
-        cardData ={props.info}
-        cardType={props.type}
-        cardFav={props.info.fav}
-        updateFavorites={props.updateFavorites}/>
-      <p>Name: {props.title}</p>
-      {
-        props.type === 'people' &&
-          <div className={`${props.type}-cards-container`}>
-            <p>Species: {props.info.species.name}</p>
-            <p>Language: {props.info.species.language}</p>
-            <p>Homeworld: {props.info.homeworld.name}</p>
-            <p>Population: {props.info.homeworld.population}</p>
-          </div>
-      }
-      {
-        props.type === 'planets' &&
-          <div className={`${props.type}-cards-container`}>
-            <p>Terrain: {props.info.terrain}</p>
-            <p>Climate: {props.info.climate}</p>
-            <p>Population: {props.info.population}</p>
-            <ul>
-              {
-                mappedResidents
-              }
-            </ul>
-          </div>
-      }
-      {
-        props.type === 'vehicles' &&
-          <div className={`${props.type}-cards-container`}>
-            <p>Model: {props.info.model}</p>
-            <p>Class: {props.info.class}</p>
-            <p>Passengers: {props.info.passengers}</p>
-          </div>
-      }
-    </div>  
+        cardName={card.name}
+        cardInfo={card.info}
+        cardType={card.type}
+        cardFav={card.info.fav}
+        updateFavorites={updateFavorites}/>
+      <p>Name: {card.name}</p>
+      <div className={`card-info-container`}>
+        <span>{cardInfo1}</span>
+        <span>{cardInfo2}</span>
+        <span>{cardInfo3}</span>
+        <span>{cardInfo4}</span>
+      </div>
+    </div>
   );
 };
 
 Card.propTypes = {
-  info: PropTypes.object,
-  type: PropTypes.string,
-  title: PropTypes.string,
+  card: PropTypes.object,
   updateFavorites: PropTypes.func
 };
 
