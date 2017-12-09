@@ -17,14 +17,21 @@ class App extends Component {
       vehicles: [],
       favorites: []
     };
+
+    this.randomFilm = Math.floor(Math.random() * 7) + 1;
+    this.apiCalls = {
+      film: `https://swapi.co/api/films/${this.randomFilm}/`,
+      people: 'https://swapi.co/api/people/',
+      planets: 'https://swapi.co/api/planets/',
+      vehicles: 'https://swapi.co/api/vehicles/'
+    };
   }
 
   async componentDidMount() {
-    const randomFilm = Math.floor(Math.random() * 7) + 1;
-    const currentFilm = await fetchAPI('film', `https://swapi.co/api/films/${randomFilm}/`);
-    const people = await fetchAPI('people', 'https://swapi.co/api/people/');
-    const planets = await fetchAPI('planets', 'https://swapi.co/api/planets/');
-    const vehicles = await fetchAPI('vehicles', 'https://swapi.co/api/vehicles/');
+    const currentFilm = await fetchAPI('film', this.apiCalls.film);
+    const people = await fetchAPI('people', this.apiCalls.people);
+    const planets = await fetchAPI('planets', this.apiCalls.planets);
+    const vehicles = await fetchAPI('vehicles', this.apiCalls.vehicles);
 
     this.setState( {currentFilm, people, planets, vehicles} );
   }
@@ -46,7 +53,7 @@ class App extends Component {
     card.info.fav = !card.info.fav; 
   }
   
-  displayCards = (type, card) => {
+  displayCards = (type) => {
     const displaying = type.toLowerCase();
     
     this.setState( {displaying} );

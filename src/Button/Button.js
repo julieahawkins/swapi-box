@@ -15,7 +15,7 @@ const Button = (props) => {
     type: props.cardType,
     name: props.cardName, 
     info: props.cardInfo
-  }
+  };
 
   const handleClick = props.displayCards 
     ? props.displayCards 
@@ -24,7 +24,7 @@ const Button = (props) => {
   return (
     <button 
       className={`${buttonClass} ${props.name} ${buttonFav}`}
-      onClick={() => {handleClick(props.name, card)}}>
+      onClick={() => { handleClick(props.name, card); }}>
       {props.name}
     </button>
   );

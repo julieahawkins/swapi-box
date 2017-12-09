@@ -6,14 +6,14 @@ import './CardContainer.css';
 const CardContainer = (props) => {
   const mappedCards = props.cards
     ? props.cards.map((card, index) => {
-        return (
-          <Card 
-            card={card} 
-            key={`card-${index}`}
-            displaying={props.displaying} 
-            updateFavorites={props.updateFavorites} />
-        );
-      })
+      return (
+        <Card 
+          card={card} 
+          key={`card-${index}`}
+          displaying={props.displaying} 
+          updateFavorites={props.updateFavorites} />
+      );
+    })
     : null;
 
   return (
