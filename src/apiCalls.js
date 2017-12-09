@@ -8,21 +8,23 @@ export const fetchAPI = async(type, url) => {
 };
 
 const handleByType = async(type, fetchedData) => {
+  let dataResult;
   if (type === 'film') {
-    return cleanFilmData(fetchedData);
+    dataResult = cleanFilmData(fetchedData);
   }
   if (type === 'people') {
-    return await fetchPeopleData(fetchedData.results);
+    dataResult = await fetchPeopleData(fetchedData.results);
   }
   if(type === 'planets') {
-    return await fetchPlanetData(fetchedData.results);
+    dataResult = await fetchPlanetData(fetchedData.results);
   }
   if (type === 'vehicles') {
-    return cleanVehiclesData(fetchedData);
+    dataResult = cleanVehiclesData(fetchedData);
   }
   if (type === 'person') {
-    return fetchedData
+    dataResult = fetchedData;
   }
+  return dataResult
 }
 
 
