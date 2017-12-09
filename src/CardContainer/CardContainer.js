@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './CardContainer.css';
 
 const CardContainer = (props) => {
-  let mappedCards = [];
+  let mappedCards;
   if (props.cards) {
     mappedCards = props.cards.map((card, index) => {
       return (
@@ -23,6 +23,10 @@ const CardContainer = (props) => {
   
   return (
     <div className='CardContainer'>
+      {
+        !props.displaying && 
+        <h1>Choose a Category</h1>
+      }
       {
         mappedCards
       }

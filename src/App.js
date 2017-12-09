@@ -60,17 +60,12 @@ class App extends Component {
         <Controls  
           displaying={this.state.displaying} 
           displayCards={this.displayCards} />
-        {
-          this.state.currentFilm &&
-          <Scroll currentFilm={this.state.currentFilm} />
-        }
-        {
-          this.state.people.length > 0 &&
-          <CardContainer 
-            updateFavorites={this.updateFavorites}
-            displaying={this.state.displaying}
-            cards={this.state[this.state.displaying]} />
-        }
+       
+        <Scroll currentFilm={this.state.currentFilm} />    
+        <CardContainer 
+          updateFavorites={this.updateFavorites}
+          displaying={this.state.displaying}
+          cards={this.state[this.state.displaying]} />     
       </div>
     );
   }
