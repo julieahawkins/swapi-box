@@ -25,15 +25,20 @@ class App extends Component {
       planets: 'https://swapi.co/api/planets/',
       vehicles: 'https://swapi.co/api/vehicles/'
     };
+    this.errorStatus = false;
   }
 
   async componentDidMount() {
-    const currentFilm = await fetchAPI('film', this.apiCalls.film);
-    const people = await fetchAPI('people', this.apiCalls.people);
-    const planets = await fetchAPI('planets', this.apiCalls.planets);
-    const vehicles = await fetchAPI('vehicles', this.apiCalls.vehicles);
+    try {
+      const currentFilm = await fetchAPI('film', this.apiCalls.film);
+      const people = await fetchAPI('people', this.apiCalls.people);
+      const planets = await fetchAPI('planets', this.apiCalls.planets);
+      const vehicles = await fetchAPI('vehicles', this.apiCalls.vehicles);
 
-    this.setState( {currentFilm, people, planets, vehicles} );
+      this.setState( {currentFilm, people, planets, vehicles} );
+    } catch(error) {
+      this.setState( {errorStatus: true} )
+    }
   }
   
   updateFavorites = (type, card) => {
