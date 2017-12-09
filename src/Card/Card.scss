@@ -3,7 +3,19 @@
   width: 200px;
   padding: 10px;
   margin: 5px;
+  span {
+    display: block;
+    ul {
+      margin: 0px;
+      padding: 0px;
+      li {
+        list-style: none;
+        padding: 0px 20px;
+      }
+    }
+  }
 }
+
   .favorite {
     color: magenta;
     background: black;

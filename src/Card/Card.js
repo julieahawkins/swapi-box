@@ -51,7 +51,7 @@ const Card = ({ card, displaying, updateFavorites }) => {
         cardFav={card.info.fav}
         updateFavorites={updateFavorites}/>
       <p>Name: {card.name}</p>
-      <div className={`${card.type}-cards-container`}>
+      <div className={`card-info-container`}>
         <span>{cardInfo1}</span>
         <span>{cardInfo2}</span>
         <span>{cardInfo3}</span>
