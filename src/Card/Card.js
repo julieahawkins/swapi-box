@@ -3,24 +3,24 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-const Card = (props) => {
-  const cardClass = !props.info.fav 
+const Card = ({ card, displaying, updateFavorites }) => {
+  const cardClass = !card.info.fav 
     ? 'Card'
     : 'Card favorite';
-    
+
   const renderCard = (cardType) => {
     if (cardType === 'people') {
       return (
-        <div className={`${props.type}-cards-container`}>
-          <p>Species: {props.info.species.name}</p>
-          <p>Language: {props.info.species.language}</p>
-          <p>Homeworld: {props.info.homeworld.name}</p>
-          <p>Population: {props.info.homeworld.population}</p>
+        <div className={`${card.type}-cards-container`}>
+          <p>Species: {card.info.species.name}</p>
+          <p>Language: {card.info.species.language}</p>
+          <p>Homeworld: {card.info.homeworld.name}</p>
+          <p>Population: {card.info.homeworld.population}</p>
         </div>
       )
     } else if (cardType === 'planets') {
-      const mappedResidents = props.info.residents.length > 0 
-        ? props.info.residents.map((resident, index) => {
+      const mappedResidents = card.info.residents.length > 0 
+        ? card.info.residents.map((resident, index) => {
             return (
               <li key={`li-${index}`}>{resident}</li>
             );
@@ -28,10 +28,10 @@ const Card = (props) => {
         : <li>N/A</li>;
 
       return (
-        <div className={`${props.type}-cards-container`}>
-          <p>Terrain: {props.info.terrain}</p>
-          <p>Climate: {props.info.climate}</p>
-          <p>Population: {props.info.population}</p>
+        <div className={`${card.type}-cards-container`}>
+          <p>Terrain: {card.info.terrain}</p>
+          <p>Climate: {card.info.climate}</p>
+          <p>Population: {card.info.population}</p>
           <ul>Residents:
             {
               mappedResidents
@@ -41,10 +41,10 @@ const Card = (props) => {
       )
     } else if (cardType === 'vehicles') {
       return (
-        <div className={`${props.type}-cards-container`}>
-          <p>Model: {props.info.model}</p>
-          <p>Class: {props.info.class}</p>
-          <p>Passengers: {props.info.passengers}</p>
+        <div className={`${card.type}-cards-container`}>
+          <p>Model: {card.info.model}</p>
+          <p>Class: {card.info.class}</p>
+          <p>Passengers: {card.info.passengers}</p>
         </div>
       )
     }
@@ -54,23 +54,21 @@ const Card = (props) => {
     <div className={cardClass}>
       <Button 
         name='*'
-        cardTitle={props.title}
-        cardData ={props.info}
-        cardType={props.type}
-        cardFav={props.info.fav}
-        updateFavorites={props.updateFavorites}/>
-      <p>Name: {props.title}</p>
+        cardTitle={card.name}
+        cardData ={card.info}
+        cardType={card.type}
+        cardFav={card.info.fav}
+        updateFavorites={updateFavorites}/>
+      <p>Name: {card.name}</p>
       {
-        renderCard(props.type)
+        renderCard(card.type)
       }
     </div>
   );
 };
 
 Card.propTypes = {
-  info: PropTypes.object,
-  type: PropTypes.string,
-  title: PropTypes.string,
+  card: PropTypes.object,
   updateFavorites: PropTypes.func
 };
 

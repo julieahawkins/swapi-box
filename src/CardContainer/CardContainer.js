@@ -4,23 +4,18 @@ import PropTypes from 'prop-types';
 import './CardContainer.css';
 
 const CardContainer = (props) => {
-  let mappedCards;
-  if (props.cards) {
-    mappedCards = props.cards.map((card, index) => {
-      return (
-        <Card 
-          type={card.type}
-          info={card.info}
-          title={card.name} 
-          key={`card-${index}`}
-          displaying={props.displaying} 
-          updateFavorites={props.updateFavorites} />
-      );
-    });
-  } else {
-    mappedCards = null;
-  }
-  
+  const mappedCards = props.cards
+    ? props.cards.map((card, index) => {
+        return (
+          <Card 
+            card={card} 
+            key={`card-${index}`}
+            displaying={props.displaying} 
+            updateFavorites={props.updateFavorites} />
+        );
+      })
+    : null;
+
   return (
     <div className='CardContainer'>
       {
