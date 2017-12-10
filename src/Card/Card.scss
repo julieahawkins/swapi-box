@@ -1,8 +1,38 @@
 .Card {
   border: 1px solid;
+  border-radius: 10px;
+  color: #4ea6c5;
   width: 200px;
   padding: 10px;
-  margin: 5px;
+  margin: 15px;
+  .heading {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    background: white;
+    border-radius: 10px;
+    color: black;
+    p {
+      margin-left: 60px;
+    }
+    .fav-icon.favorite {
+      background-image: url('../assets/star-gold.png');
+    }
+    .fav-icon {
+      background-size: 30px;
+      background-image: url('../assets/star-grey.png');
+      &:hover {
+        background-image: url('../assets/star-gold.png');
+      }
+      .spacer {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+  .card-info-container {
+    padding: 10px;
+  }
   span {
     display: block;
     ul {
@@ -16,7 +46,7 @@
   }
 }
 
-  .favorite {
-    color: magenta;
-    background: black;
-  }
+.favorite {
+  color: magenta;
+  background: black;
+}

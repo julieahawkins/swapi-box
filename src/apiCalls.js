@@ -1,5 +1,3 @@
-
-
 export const fetchAPI = async(type, url) => {
   const initialFetch = await fetch(url);
   const fetchedData = await initialFetch.json();
@@ -8,27 +6,22 @@ export const fetchAPI = async(type, url) => {
 };
 
 const handleByType = async(type, fetchedData) => {
-  //object??
-  let dataResult;
-  if (type === 'film') {
-    dataResult = cleanFilmData(fetchedData);
-  }
-  if (type === 'people') {
-    dataResult = await fetchPeopleData(fetchedData.results);
-  }
-  if (type === 'planets') {
-    dataResult = await fetchPlanetData(fetchedData.results);
-  }
-  if (type === 'vehicles') {
-    dataResult = cleanVehiclesData(fetchedData);
-  }
-  if (type === 'person') {
-    dataResult = fetchedData;
-  }
-  return dataResult;
+  const dataResult = {
+    film: cleanFilmData(fetchedData),
+    people: await fetchPeopleData(fetchedData.results),
+    planets: await fetchPlanetData(fetchedData.results),
+    vehicles: cleanVehiclesData(fetchedData),
+    person: returnPerson(fetchedData)
+  };
+
+  return dataResult[type]();
 };
 
-const cleanFilmData = (filmData) => {
+const returnPerson = (fetchedData) => () => {
+  return fetchedData
+}
+
+const cleanFilmData = (filmData) => () => {
   const numerals = {
     1: 'I',
     2: 'II',
@@ -39,17 +32,22 @@ const cleanFilmData = (filmData) => {
     7: 'VII'
   };
 
+  const regex = new RegExp(/\s{4,}/, 'g');
+
+  const rawCrawlText = filmData.opening_crawl.replace(regex, '###');
+  const crawlText = rawCrawlText.split('###');
+
   const currentFilm = {
     title: filmData.title,
-    crawlText: filmData.opening_crawl, 
     episodeNum: numerals[filmData.episode_id], 
-    releaseDate: filmData.release_date
+    releaseDate: filmData.release_date,
+    crawlText 
   };
 
   return currentFilm;
 };
 
-const fetchPeopleData = async(peopleArray) => {
+const fetchPeopleData = async(peopleArray) => () => {
   const unresolvedPromises = peopleArray.map(async(person) => {
     const homeworld = await fetchAPI('person', person.homeworld);
     const species = await fetchAPI('person', person.species);
@@ -70,7 +68,7 @@ const fetchPeopleData = async(peopleArray) => {
   return Promise.all(unresolvedPromises);
 };
 
-const fetchPlanetData = async(planetArray) => {
+const fetchPlanetData = async(planetArray) => () => {
   const unresolvedPromises = planetArray.map(async(planet) => {
     let residentArray = await fetchResidents(planet);
     
@@ -102,7 +100,7 @@ const fetchResidents = async(planet) => {
   return await Promise.all(residentPromises);
 };
 
-const cleanVehiclesData = (vehiclesArray) => {
+const cleanVehiclesData = (vehiclesArray) => () => {
   const vehicles = vehiclesArray.results.map(vehicle => {
     return {
       name: vehicle.name,

@@ -3,42 +3,55 @@
 .scroll-container {
   border: 1px solid;
   overflow: hidden;
-  height: 400px;
+  height: 350px;
   margin: 35px;
   display: flex;
   justify-content: center;
-  perspective: 300px;
-  background: black;
+  perspective: 350px;
 }
 
 .Scroll {
   text-align: center;
-  padding: 5px;
+  padding: 100px;
   position: relative;
   top: -2500px;
   transform-origin: 50% 100%;
-  font-size: 50pt;
+  font-size: 45pt;
   font-family: 'Pathway Gothic One', sans-serif;
   font-weight: 600;
   letter-spacing: 4px;
   line-height: 150%;
 
-  color: yellow;
+  color: #f9d448;
   animation: crawl 120s linear;
   .intro {
     margin-bottom: 100px;
-    padding: 100px;
-    color: lighten(blue, 15%);
+    padding: 150px;
+    color: #4ea6c5;
     text-align: left;
   }
   h3 {
+    font-size: 50pt;
     margin: 0px;
   }
+  .scroll-text {
+    text-align: justify;
+    letter-spacing: 1px;
+  }
+}
+
+.fade {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  top: -25px;
+  background-image: linear-gradient(0deg, transparent, black 75%);
+  z-index: 1;
 }
 
 @keyframes crawl {
   0% {
-    top: 600px;
+    top: 300px;
 
     transform: rotateX(20deg) translateZ(0);
   }

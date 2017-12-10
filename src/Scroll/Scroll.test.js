@@ -17,7 +17,7 @@ describe('Scroll test', () => {
 
     renderedScroll = shallow(<Scroll currentFilm={{
       title: 'A New Hope',
-      crawlText: 'the crawl text from the beginning of A New Hope..'
+      crawlText: ['the crawl text from the beginning of A New Hope..']
     }}/>);
 
     expect(renderedScroll.find('.Scroll').length).toEqual(1);
@@ -26,7 +26,7 @@ describe('Scroll test', () => {
   it('should render intro text', () => {
     const renderedScroll = shallow(<Scroll currentFilm={{
       title: 'A New Hope', 
-      crawlText: 'the crawl text from the beginning of A New Hope..'
+      crawlText: ['the crawl text from the beginning of A New Hope..']
     }}/>);
     const introText = renderedScroll.find('.intro').text();
     expect(introText).toEqual('A long time ago in a galaxy far, far away....');

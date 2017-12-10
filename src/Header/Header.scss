@@ -2,4 +2,21 @@
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+  color: white;
+  .favorite-wrapper {
+    position: absolute;
+    left: 80%;
+    width: 150px; 
+    background: white; 
+    margin: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .favNum {
+      color: black;
+    }
+    .Favorites {
+      border: none;
+    }
+  }
 }

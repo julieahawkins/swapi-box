@@ -10,6 +10,10 @@ const Button = (props) => {
   const buttonFav = props.cardFav 
     ? 'favorite'
     : null;
+
+  const buttonText = props.name !== '*'
+    ? props.name
+    : <span className="spacer"></span>;
     
   const card = {
     type: props.cardType,
@@ -25,7 +29,7 @@ const Button = (props) => {
     <button 
       className={`${buttonClass} ${props.name} ${buttonFav}`}
       onClick={() => { handleClick(props.name, card); }}>
-      {props.name}
+      <span className={`fav-icon ${buttonFav}`}>{buttonText}</span> 
     </button>
   );
 };

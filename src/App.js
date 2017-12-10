@@ -4,6 +4,7 @@ import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
 import CardContainer from './CardContainer/CardContainer';
 import { fetchAPI } from './apiCalls';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -68,6 +69,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header 
+          favNum={this.state.favorites.length}
           displayCards={this.displayCards}
           displaying={this.state.displaying} />
         <Controls  
