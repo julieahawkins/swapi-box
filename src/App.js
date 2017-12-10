@@ -15,7 +15,8 @@ class App extends Component {
       people: [],
       planets: [],
       vehicles: [],
-      favorites: []
+      favorites: [],
+      errorStatus: false
     };
 
     this.randomFilm = Math.floor(Math.random() * 7) + 1;
@@ -25,7 +26,6 @@ class App extends Component {
       planets: 'https://swapi.co/api/planets/',
       vehicles: 'https://swapi.co/api/vehicles/'
     };
-    this.errorStatus = false;
   }
 
   async componentDidMount() {
@@ -36,8 +36,8 @@ class App extends Component {
       const vehicles = await fetchAPI('vehicles', this.apiCalls.vehicles);
 
       this.setState( {currentFilm, people, planets, vehicles} );
-    } catch(error) {
-      this.setState( {errorStatus: true} )
+    } catch (error) {
+      this.setState( {errorStatus: true} );
     }
   }
   
@@ -72,7 +72,11 @@ class App extends Component {
           displaying={this.state.displaying} />
         <Controls  
           displaying={this.state.displaying} 
-          displayCards={this.displayCards} />       
+          displayCards={this.displayCards} /> 
+        {
+          this.state.errorStatus &&
+          <h1>Error: Not Found</h1>
+        }      
         <Scroll currentFilm={this.state.currentFilm} />    
         <CardContainer 
           updateFavorites={this.updateFavorites}

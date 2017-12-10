@@ -8,6 +8,7 @@ export const fetchAPI = async(type, url) => {
 };
 
 const handleByType = async(type, fetchedData) => {
+  //object??
   let dataResult;
   if (type === 'film') {
     dataResult = cleanFilmData(fetchedData);
