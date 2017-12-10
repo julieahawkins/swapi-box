@@ -11,9 +11,10 @@ const Scroll = ({currentFilm}) => {
       );
     });
   }
-  
+
   return (
     <div className='scroll-container'>
+      <div className='fade'></div>
       {
         currentFilm.crawlText && 
         <div className='Scroll'>
