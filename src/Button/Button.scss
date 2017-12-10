@@ -1,6 +1,10 @@
 .Button {
   font-size: 18pt;
   padding: 5px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid;
+  outline: none;
 }
 
 .selected {
@@ -8,9 +12,3 @@
   color: white;
 }
 
-// .Favorites {
-//   position: absolute;
-//   left: 82%;
-//   margin-top: 20px;
-//   width: 150px;
-// }
