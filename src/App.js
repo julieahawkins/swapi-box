@@ -69,6 +69,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header 
+          favNum={this.state.favorites.length}
           displayCards={this.displayCards}
           displaying={this.state.displaying} />
         <Controls  

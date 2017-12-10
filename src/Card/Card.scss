@@ -3,7 +3,18 @@
   color: yellow;
   width: 200px;
   padding: 10px;
-  margin: 5px;
+  margin: 15px;
+  .heading {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    background: yellow;
+    color: black;
+    p {
+      margin-left: 60px;
+    }
+  }
+  
   span {
     display: block;
     ul {
@@ -17,7 +28,7 @@
   }
 }
 
-  .favorite {
-    color: magenta;
-    background: black;
-  }
+.favorite {
+  color: magenta;
+  background: black;
+}

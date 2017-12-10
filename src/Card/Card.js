@@ -43,14 +43,16 @@ const Card = ({ card, updateFavorites }) => {
 
   return (
     <div className={cardClass}>
-      <Button 
-        name='*'
-        cardName={card.name}
-        cardInfo={card.info}
-        cardType={card.type}
-        cardFav={card.info.fav}
-        updateFavorites={updateFavorites}/>
-      <p>Name: {card.name}</p>
+      <div className='heading'>
+        <Button 
+          name='*'
+          cardName={card.name}
+          cardInfo={card.info}
+          cardType={card.type}
+          cardFav={card.info.fav}
+          updateFavorites={updateFavorites}/>
+        <p>{card.name}</p>
+      </div>
       <div className={`card-info-container`}>
         <span>{cardInfo1}</span>
         <span>{cardInfo2}</span>
