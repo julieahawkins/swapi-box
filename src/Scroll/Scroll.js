@@ -3,6 +3,15 @@ import PropTypes from 'prop-types';
 import './Scroll.css';
 
 const Scroll = ({currentFilm}) => {
+  let mappedCrawlText;
+  if (currentFilm.crawlText) {
+    mappedCrawlText = currentFilm.crawlText.map((paragraph, index) => {
+      return (
+        <p key={`ct-${index}`}>{paragraph}</p>
+      );
+    });
+  }
+  
   return (
     <div className='scroll-container'>
       {
@@ -13,7 +22,9 @@ const Scroll = ({currentFilm}) => {
           </p>
           <h3>Episode {currentFilm.episodeNum}</h3>
           <h3>{currentFilm.title.toUpperCase()}</h3>
-          <p className='scroll-text'>{currentFilm.crawlText}</p>
+          <section className='scroll-text'>
+            {mappedCrawlText}
+          </section>
           <p>Released: {currentFilm.releaseDate}</p>
         </div>
       }

@@ -8,7 +8,16 @@ export const fetchAPI = async(type, url) => {
 };
 
 const handleByType = async(type, fetchedData) => {
-  //object??
+  // const dataResult = {
+  //   film: cleanFilmData(fetchedData),
+  //   people: await fetchPeopleData(fetchedData.results),
+  //   planets: await fetchPlanetData(fetchedData.results),
+  //   vehicles: cleanVehiclesData(fetchedData),
+  //   person: fetchedData
+  // };
+
+  // return dataResult[type];
+
   let dataResult;
   if (type === 'film') {
     dataResult = cleanFilmData(fetchedData);
@@ -39,11 +48,16 @@ const cleanFilmData = (filmData) => {
     7: 'VII'
   };
 
+  const regex = new RegExp(/\s{4,}/, 'g');
+
+  const rawCrawlText = filmData.opening_crawl.replace(regex, '###');
+  const crawlText = rawCrawlText.split('###');
+
   const currentFilm = {
     title: filmData.title,
-    crawlText: filmData.opening_crawl, 
     episodeNum: numerals[filmData.episode_id], 
-    releaseDate: filmData.release_date
+    releaseDate: filmData.release_date,
+    crawlText 
   };
 
   return currentFilm;
