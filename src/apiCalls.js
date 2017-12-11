@@ -55,10 +55,12 @@ const fetchPeopleData = async(peopleArray) => () => {
     const character = {
       name: person.name,
       type: 'people',
+      fav: false,
       info: {
-        fav: false,
-        homeworld, 
-        species
+        homeworld: homeworld.name, 
+        population: homeworld.population,
+        species: species.name,
+        language: species.language
       }
     };
 
@@ -75,8 +77,8 @@ const fetchPlanetData = async(planetArray) => () => {
     let planetData = {
       name: planet.name,
       type: 'planets',
+      fav: false,
       info: {
-        fav: false,
         terrain: planet.terrain,
         climate: planet.climate,
         population: planet.population,
@@ -105,8 +107,8 @@ const cleanVehiclesData = (vehiclesArray) => () => {
     return {
       name: vehicle.name,
       type: 'vehicles',
+      fav: false,
       info: {
-        fav: false,
         model: vehicle.model,
         class: vehicle.vehicle_class,
         passengers: vehicle.passengers

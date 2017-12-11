@@ -55,7 +55,7 @@ describe('Button test', () => {
     renderedButton = shallow(
       <Button 
         name={''}
-        cardFav={true}
+        card={{fav: true}}
         updateFavorites={mockUpdateFavorites} />
     );
 

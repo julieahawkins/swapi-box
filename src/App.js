@@ -43,6 +43,7 @@ class App extends Component {
   }
   
   updateFavorites = (type, card) => {
+    console.log()
     let favorites = this.state.favorites;
     const favCard = favorites.find(fav => fav.name === card.name);
 
@@ -51,12 +52,12 @@ class App extends Component {
     favorites = !favCard 
       ? [...favorites, card] 
       : favorites.filter(fav => fav.name !== card.name);
-    
+
     this.setState( {favorites} );
   }
 
   toggleFav = (card) => {
-    card.info.fav = !card.info.fav; 
+    card.fav = !card.fav; 
   }
   
   displayCards = (type) => {

@@ -71,10 +71,12 @@ describe('apiCalls test with type PEOPLE', () => {
     const mockData = [{
           name: 'Luke Skywalker',
           type: 'people',
+          fav: false,
           info: {
-            fav: false,
-            homeworld: {results: peopleData.results}, 
-            species: {results: peopleData.results}
+            homeworld: undefined, 
+            species: undefined,
+            language: undefined,
+            population: undefined
           }
         }];
     
@@ -109,6 +111,7 @@ describe('apiCalls test with type PLANETS', () => {
     const mockData = [{
           name: 'Alderaan',
           type: 'planets',
+          fav: false,
           info: {
             population: '2000000000',
             residents: [
@@ -118,12 +121,11 @@ describe('apiCalls test with type PLANETS', () => {
            ],
             terrain: 'grasslands, mountains',
             climate: 'temperate',
-            fav: false
           }
         }];
     
     const fetch = await fetchAPI('planets');
-    console.log(fetch)
+    // console.log(fetch)
     expect(fetch).toEqual(mockData)
   });
 });
@@ -162,11 +164,11 @@ describe('apiCalls test with type VEHICLES', () => {
     const mockData = [{
           name: 'AT-AT',
           type: 'vehicles',
+          fav: false,
           info: {
             model: 'All Terrain Armored Transport',
             class: 'assault walker',
             passengers: 40,
-            fav: false
           }
         }];
     

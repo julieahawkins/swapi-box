@@ -7,20 +7,17 @@ const Button = (props) => {
     ? 'Button' 
     : 'Button selected';
 
-  const buttonFav = props.cardFav 
-    ? 'favorite'
-    : null;
-
+  let buttonFav;
+  if (props.card) {
+    buttonFav = props.card.fav 
+      ? 'favorite'
+      : null;
+  }
+  
   const buttonText = props.name !== '*'
     ? props.name
     : <span className="spacer"></span>;
-    
-  const card = {
-    type: props.cardType,
-    name: props.cardName, 
-    info: props.cardInfo
-  };
-
+  
   const handleClick = props.displayCards 
     ? props.displayCards 
     : props.updateFavorites;
@@ -28,7 +25,7 @@ const Button = (props) => {
   return (
     <button 
       className={`${buttonClass} ${props.name} ${buttonFav}`}
-      onClick={() => { handleClick(props.name, card); }}>
+      onClick={() => { handleClick(props.name, props.card); }}>
       <span className={`fav-icon ${buttonFav}`}>{buttonText}</span> 
     </button>
   );
