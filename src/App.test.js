@@ -61,10 +61,9 @@ describe('App test', () => {
   });
 
   it.skip('should add a card to favorites array when a card button is clicked', () => {
-    // renderedApp = mount(<App />);
-    // const cardButton = renderedApp.find('CardContainer');
-    // console.log(cardButton)
+    const mockUpdateFavorites = jest.fn();
 
+    expect(mockUpdateFavorites()).toEqual()
   });
 
 
