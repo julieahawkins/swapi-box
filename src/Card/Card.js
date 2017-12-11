@@ -10,11 +10,11 @@ const Card = ({ card, updateFavorites }) => {
 
   let mappedCardInfo = Object.keys(card.info).map((stat, index) => {
       return (
-        <span>{`${stat}: ${card.info[stat]}`}</span>
+        <span key={`span-${index}`}>{`${stat}: ${card.info[stat]}`}</span>
       )
     });
 
-   if (card.type === 'planets') {
+  if (card.type === 'planets') {
     mappedCardInfo = Object.keys(card.info).map((stat, index) => {
       if (stat === 'residents') {
         const mappedResidents = card.info.residents.length > 0 
@@ -29,11 +29,11 @@ const Card = ({ card, updateFavorites }) => {
         )
       }
       return (
-        <span>{`${stat}: ${card.info[stat]}`}</span>
+        <span key={`span-${index}`}>{`${stat}: ${card.info[stat]}`}</span>
       )
     });
   }
-  
+
   return (
     <div className={cardClass}>
       <div className='heading'>
@@ -44,7 +44,9 @@ const Card = ({ card, updateFavorites }) => {
         <p>{card.name}</p>
       </div>
       <div className={`card-info-container`}>
-      {mappedCardInfo}
+      {
+        mappedCardInfo
+      }
       </div>
     </div>
   );
