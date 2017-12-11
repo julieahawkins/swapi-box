@@ -5,9 +5,9 @@ import './Card.css';
 
 const Card = ({ card, updateFavorites }) => {
   //take fav out of card info and loop over card.info to make spans
-  const cardClass = !card.info.fav 
-    ? 'Card'
-    : 'Card favorite';
+  const cardClass = card.fav 
+    ? 'Card favorite'
+    : 'Card' ;
 
   let cardInfo1;
   let cardInfo2;
@@ -47,10 +47,7 @@ const Card = ({ card, updateFavorites }) => {
       <div className='heading'>
         <Button 
           name='*'
-          cardName={card.name}
-          cardInfo={card.info}
-          cardType={card.type}
-          cardFav={card.info.fav}
+          card={card}
           updateFavorites={updateFavorites}/>
         <p>{card.name}</p>
       </div>
