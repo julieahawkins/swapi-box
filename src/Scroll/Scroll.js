@@ -12,12 +12,15 @@ const Scroll = ({currentFilm}) => {
     });
   }
 
+  const fileName = '2014/11/star-wars-at-at-walkers-gif-by-dkng';
+  const imageSource = `https://milnersblog.files.wordpress.com/${fileName}.gif`;
+
   return (
     <div className='scroll-container'>
       <div className='fade'></div>
       {
         !currentFilm.crawlText &&
-        <h1>not there yet..</h1>
+        <img src={imageSource} alt='' />
       }
       {
         currentFilm.crawlText && 

@@ -77,7 +77,9 @@ class App extends Component {
           displayCards={this.displayCards} /> 
         {
           this.state.errorStatus &&
-          <h1>Error: Data Not Found</h1>
+          <h1>Error: Data Not Found
+            <img src='https://i.imgur.com/QNbn93s.gif' alt='error' /> 
+          </h1>
         }      
         <Scroll currentFilm={this.state.currentFilm} />    
         <CardContainer 

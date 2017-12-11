@@ -1,28 +1,39 @@
 .Card {
   border: 1px solid;
   border-radius: 10px;
-  color: #4ea6c5;
+  color: #db72e5;
   width: 200px;
   padding: 10px;
   margin: 15px;
+  &:hover {
+    transition: 1s;
+    box-shadow: 0px 0px 5px 5px rgba(176, 03, 77, 0.6);
+  }
   .heading {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    background: white;
-    border-radius: 10px;
-    color: black;
+    align-items: center;
+    font-size: 16pt;
+    color: #929367;
+    text-shadow: 2px 2px 15px #929367;
     p {
-      margin-left: 60px;
+      margin: 0px;
     }
     .fav-icon.favorite {
       background-image: url('../assets/star-gold.png');
+      background-repeat: no-repeat;
+      background-position: center;
     }
     .fav-icon {
       background-size: 30px;
       background-image: url('../assets/star-grey.png');
+      background-repeat: no-repeat;
+      background-position: center;
       &:hover {
         background-image: url('../assets/star-gold.png');
+        background-repeat: no-repeat;
+        background-position: center;
       }
       .spacer {
         height: 30px;
@@ -32,21 +43,32 @@
   }
   .card-info-container {
     padding: 10px;
+    font-size: 14pt;
   }
   span {
+    margin: 3px 0px;
     display: block;
-    ul {
-      margin: 0px;
-      padding: 0px;
-      li {
-        list-style: none;
-        padding: 0px 20px;
-      }
+  }
+  ul {
+    margin: 3px 0px;
+    margin: 0px;
+    padding: 0px;
+    li {
+      list-style: none;
+      padding: 0px 20px;
     }
+  }
+  button {
+    background: rgba(146, 147, 103, 0.6)
   }
 }
 
 .favorite {
-  color: magenta;
-  background: black;
+  color: #4ea6c5;
+  background: rgba(78, 166, 197, 0.3);
+  &:hover {
+    transition: 1s;
+
+    box-shadow: 0px 0px 5px 5px rgba(29, 116, 177, 0.7);
+  }
 }

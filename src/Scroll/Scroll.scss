@@ -3,6 +3,7 @@
 .scroll-container {
   border: 1px solid;
   overflow: hidden;
+  min-height: 100px;
   height: 350px;
   margin: 35px;
   display: flex;
@@ -18,7 +19,7 @@
   text-align: center;
   padding: 100px;
   position: relative;
-  top: -2500px;
+  top: -6000px;
   transform-origin: 50% 100%;
   font-size: 45pt;
   font-family: 'Pathway Gothic One', sans-serif;

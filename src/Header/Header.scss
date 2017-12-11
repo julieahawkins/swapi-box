@@ -19,15 +19,29 @@
     background: none;
     color: #eeee93;
     text-shadow: 2px 2px 10px #ffff28;
+    padding: 0px 5px;
     &:hover {
-      border: 1px solid #eeee93;
+      border: 1px solid #4ea6c5;
+      border-radius: 10px;
+      box-shadow: 0px 0px 5px 5px rgba(29, 116, 177, 0.7);
+
+      .favNum,
+      .Favorites {
+        color: #4ea6c5;
+        text-shadow: 2px 2px 10px #4ea6c5;
+
+      }
     }
     .favNum {
+      text-align: center;
+      border: 1px solid;
       color: #eeee93;
-      padding-left: 15px;
       font-size: 18pt;
+      padding: 5px;
+      margin: 8px;
     }
     .Favorites {
+      margin: 0px;
       border: none;
       background: none;
       color: #eeee93;
