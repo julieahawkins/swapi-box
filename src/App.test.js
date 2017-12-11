@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from './App';
-import mockData from './mockData';
+import mockData from './apiCalls/mockData';
 
 
 //default state and renders

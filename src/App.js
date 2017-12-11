@@ -3,7 +3,7 @@ import Header from './Header/Header';
 import Controls from './Controls/Controls';
 import Scroll from './Scroll/Scroll';
 import CardContainer from './CardContainer/CardContainer';
-import { fetchAPI } from './apiCalls';
+import { fetchAPI } from './apiCalls/apiCalls';
 import './App.css';
 
 class App extends Component {
