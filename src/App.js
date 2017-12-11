@@ -43,7 +43,6 @@ class App extends Component {
   }
   
   updateFavorites = (type, card) => {
-    console.log()
     let favorites = this.state.favorites;
     const favCard = favorites.find(fav => fav.name === card.name);
 

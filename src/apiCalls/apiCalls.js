@@ -18,8 +18,8 @@ const handleByType = async(type, fetchedData) => {
 };
 
 const returnPerson = (fetchedData) => () => {
-  return fetchedData
-}
+  return fetchedData;
+};
 
 const cleanFilmData = (filmData) => () => {
   const numerals = {

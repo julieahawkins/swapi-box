@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import App from './App';
 import mockData from './apiCalls/mockData';
 
@@ -23,9 +23,9 @@ describe('App test', () => {
       people: [], 
       planets: [], 
       vehicles: []
-    };
-    
-  })
+    }; 
+  });
+
   it('should render correctly', () => {
 
     expect(renderedApp.find('.App').length).toEqual(1);
@@ -36,8 +36,9 @@ describe('App test', () => {
   });
 
   it('should render an error if the errorStatus is true', () => {
-    renderedApp.setState({errorStatus: true})
-    expect(renderedApp.find('h1').first().text()).toEqual('Error: Data Not Found');
+    renderedApp.setState({errorStatus: true});
+    const h1 = renderedApp.find('h1').first();
+    expect(h1.text()).toEqual('Error: Data Not Found');
   
   });
 
@@ -49,7 +50,7 @@ describe('App test', () => {
   it('should be fetch data and setState to match pulled data', ()=> {
     const { mockState } = mockData;
 
-    renderedApp.setState(mockState)
+    renderedApp.setState(mockState);
 
     expect(renderedApp.state('people').length).toEqual(10);
     expect(renderedApp.state('planets').length).toEqual(10);
@@ -60,10 +61,10 @@ describe('App test', () => {
     expect(renderedApp.state('errorStatus')).toEqual(false);
   });
 
-  it.skip('should add a card to favorites array when a card button is clicked', () => {
+  it.skip('should add a card to favs array when a card button is clicked', () => {
     const mockUpdateFavorites = jest.fn();
 
-    expect(mockUpdateFavorites()).toEqual()
+    expect(mockUpdateFavorites()).toEqual();
   });
 
 

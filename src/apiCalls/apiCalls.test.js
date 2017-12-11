@@ -1,4 +1,3 @@
-import React from 'react';
 import mockData from './mockData.js';
 import { fetchAPI } from './apiCalls';
 
@@ -17,9 +16,8 @@ describe('apiCalls test with type FILM', () => {
             release_date: '1977-05-25'
           }
         )   
-      })
-    )
-  })
+    }));
+  });
 
   it('should be a function', () => {
     expect(fetchAPI).toBeAFunction;
@@ -28,7 +26,7 @@ describe('apiCalls test with type FILM', () => {
   it('should return fetchedData', async () => {
     const fetch = await fetchAPI('film');
     
-    expect(typeof fetch).toEqual('object')
+    expect(typeof fetch).toEqual('object');
   });
 
   it('should return fetchedData', async () => {
@@ -41,7 +39,7 @@ describe('apiCalls test with type FILM', () => {
 
     const fetch = await fetchAPI('film');
     
-    expect(fetch).toEqual(mockData)
+    expect(fetch).toEqual(mockData);
   });
 });
 
@@ -54,7 +52,7 @@ describe('apiCalls test with type PEOPLE', () => {
             results: peopleData.results
           }
         )   
-      }));
+    }));
   });
 
   it('should be a function', () => {
@@ -64,24 +62,26 @@ describe('apiCalls test with type PEOPLE', () => {
   it('should return fetchedData', async () => {
     const fetch = await fetchAPI('people');
 
-    expect(typeof fetch).toEqual('object')
+    expect(typeof fetch).toEqual('object');
   });
 
   it('should return cleaned fetchedData', async () => {
-    const mockData = [{
-          name: 'Luke Skywalker',
-          type: 'people',
-          fav: false,
-          info: {
-            homeworld: undefined, 
-            species: undefined,
-            language: undefined,
-            population: undefined
-          }
-        }];
+    const mockData = [
+      {
+        name: 'Luke Skywalker',
+        type: 'people',
+        fav: false,
+        info: {
+          homeworld: undefined, 
+          species: undefined,
+          language: undefined,
+          population: undefined
+        }
+      }
+    ];
     
     const fetch = await fetchAPI('people');
-    expect(fetch).toEqual(mockData)
+    expect(fetch).toEqual(mockData);
   });
 });
 
@@ -94,7 +94,7 @@ describe('apiCalls test with type PLANETS', () => {
             results: planetData.results           
           }
         )   
-      }));
+    }));
   });
 
   it('should be a function', () => {
@@ -104,29 +104,31 @@ describe('apiCalls test with type PLANETS', () => {
   it('should return fetchedData', async () => {
     const fetch = await fetchAPI('planets');
 
-    expect(typeof fetch).toEqual('object')
+    expect(typeof fetch).toEqual('object');
   });
 
   it('should return cleaned fetchedData', async () => {
-    const mockData = [{
-          name: 'Alderaan',
-          type: 'planets',
-          fav: false,
-          info: {
-            population: '2000000000',
-            residents: [
-              undefined,
-              undefined,
-              undefined,
-           ],
-            terrain: 'grasslands, mountains',
-            climate: 'temperate',
-          }
-        }];
+    const mockData = [
+      {
+        name: 'Alderaan',
+        type: 'planets',
+        fav: false,
+        info: {
+          population: '2000000000',
+          residents: [
+            undefined,
+            undefined,
+            undefined
+          ],
+          terrain: 'grasslands, mountains',
+          climate: 'temperate'
+        }
+      }
+    ];
     
     const fetch = await fetchAPI('planets');
-    // console.log(fetch)
-    expect(fetch).toEqual(mockData)
+
+    expect(fetch).toEqual(mockData);
   });
 });
 
@@ -136,18 +138,10 @@ describe('apiCalls test with type VEHICLES', () => {
       json: () => 
         Promise.resolve(
           {
-            results: [
-              {
-                name: 'AT-AT',
-                model: 'All Terrain Armored Transport',
-                vehicle_class: 'assault walker',
-                passengers: 40,
-              }
-              
-            ]
+            results: vehicleData.results
           }
         )   
-      }));
+    }));
   });
 
   it('should be a function', () => {
@@ -157,23 +151,26 @@ describe('apiCalls test with type VEHICLES', () => {
   it('should return fetchedData', async () => {
     const fetch = await fetchAPI('vehicles');
 
-    expect(typeof fetch).toEqual('object')
+    expect(typeof fetch).toEqual('object');
   });
 
   it('should return cleaned fetchedData', async () => {
-    const mockData = [{
-          name: 'AT-AT',
-          type: 'vehicles',
-          fav: false,
-          info: {
-            model: 'All Terrain Armored Transport',
-            class: 'assault walker',
-            passengers: 40,
-          }
-        }];
+    const mockData = [
+      {
+        name: 'Sand Crawler',
+        type: 'vehicles',
+        fav: false,
+        info: {
+          model: 'Digger Crawler',
+          class: 'wheeled',
+          passengers: '30'
+        }
+      }
+    ];
     
     const fetch = await fetchAPI('vehicles');
-    expect(fetch).toEqual(mockData)
+
+    expect(fetch).toEqual(mockData);
   });
 });
 
@@ -186,7 +183,7 @@ describe('apiCalls test with type PERSON', () => {
             name: 'Leia Organa'
           }
         )   
-      }));
+    }));
   });
 
   it('should be a function', () => {
@@ -196,15 +193,16 @@ describe('apiCalls test with type PERSON', () => {
   it('should return fetchedData', async () => {
     const fetch = await fetchAPI('person');
     
-    expect(typeof fetch).toEqual('object')
+    expect(typeof fetch).toEqual('object');
   });
 
   it('should return cleaned fetchedData', async () => {
     const mockData = {
-          name: 'Leia Organa'
-        };
+      name: 'Leia Organa'
+    };
     
     const fetch = await fetchAPI('person');
-    expect(fetch).toEqual(mockData)
+
+    expect(fetch).toEqual(mockData);
   });
 });
