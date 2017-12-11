@@ -3,11 +3,6 @@ import { shallow } from 'enzyme';
 import App from './App';
 import mockData from './apiCalls/mockData';
 
-
-//default state and renders
-//clicks change state with function calls
-//state changes cause render changes
-
 describe('App test', () => {
   let renderedApp;
   let expectedDefaultState;
@@ -61,11 +56,53 @@ describe('App test', () => {
     expect(renderedApp.state('errorStatus')).toEqual(false);
   });
 
-  it.skip('should add a card to favs array when a card button is clicked', () => {
-    const mockUpdateFavorites = jest.fn();
+  it('should add a card to favs array when a card button is clicked', () => {
+    const mockCard = {
+      name: 'AT-AT',
+      type: 'vehicles',
+      fav: false,
+      info: {
+        model: 'All Terrain Armored Transport', 
+        class: 'assault walker', 
+        passengers: 40
+      }
+    };
 
-    expect(mockUpdateFavorites()).toEqual();
+    renderedApp.instance().updateFavorites('vehicles', mockCard);
+
+    expect(renderedApp.state('favorites').length).toEqual(1);
+    expect(renderedApp.state('favorites')[0]).toEqual(mockCard);
   });
 
+  it('should remove a card from favs when same card button is clicked', () => {
+    const mockCard = {
+      name: 'AT-AT',
+      type: 'vehicles',
+      fav: false,
+      info: {
+        model: 'All Terrain Armored Transport', 
+        class: 'assault walker', 
+        passengers: 40
+      }
+    };
 
+    renderedApp.instance().updateFavorites('vehicles', mockCard);
+
+    expect(renderedApp.state('favorites').length).toEqual(1);
+
+    renderedApp.instance().updateFavorites('vehicles', mockCard);
+    
+    expect(renderedApp.state('favorites').length).toEqual(0);
+  });
+
+  it('should display people cards when the people button is clicked', () => {
+    const { mockState } = mockData;
+    renderedApp.setState(mockState);
+
+    expect(renderedApp.state('displaying')).toEqual(null);
+
+    renderedApp.instance().displayCards('People');
+
+    expect(renderedApp.state('displaying')).toEqual('people');
+  });
 });
