@@ -3,20 +3,35 @@
   justify-content: center;
   box-sizing: border-box;
   color: white;
+  h1 {
+    font-size: 52px;
+    letter-spacing: 18px;
+    font-weight: 500;
+  }
   .favorite-wrapper {
     position: absolute;
     left: 80%;
     width: 150px; 
-    background: white; 
     margin: 15px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background: none;
+    color: #eeee93;
+    text-shadow: 2px 2px 10px #ffff28;
+    &:hover {
+      border: 1px solid #eeee93;
+    }
     .favNum {
-      color: black;
+      color: #eeee93;
+      padding-left: 15px;
+      font-size: 18pt;
     }
     .Favorites {
       border: none;
+      background: none;
+      color: #eeee93;
+      text-shadow: 2px 2px 10px #ffff28;
     }
   }
 }

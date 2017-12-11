@@ -1,8 +1,10 @@
 import React from 'react';
+import mockData from './mockData.js';
 import { fetchAPI } from './apiCalls';
 
+const { peopleData, planetData, vehicleData } = mockData;
 
-describe('apiCalls test with type film', () => {
+describe('apiCalls test with type FILM', () => {
   beforeEach(() => {
 
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
@@ -12,28 +14,121 @@ describe('apiCalls test with type film', () => {
             opening_crawl: 'some opening crawl text',
             title: 'A New Hope',
             episode_id: 4,
-            release_date: '1974-11-03'
+            release_date: '1977-05-25'
           }
         )   
       })
     )
   })
 
-  it('should render correctly', () => {
-
+  it('should be a function', () => {
     expect(fetchAPI).toBeAFunction;
   });
 
   it('should return fetchedData', async () => {
     const fetch = await fetchAPI('film');
-    console.log(fetch)
-
-
+    
     expect(typeof fetch).toEqual('object')
+  });
+
+  it('should return fetchedData', async () => {
+    const mockData = {
+      title: 'A New Hope',
+      episodeNum: 'IV', 
+      releaseDate: '1977-05-25',
+      crawlText: ['some opening crawl text'] 
+    };
+
+    const fetch = await fetchAPI('film');
+    
+    expect(fetch).toEqual(mockData)
   });
 });
 
-describe('apiCalls test with type people', () => {
+describe('apiCalls test with type PEOPLE', () => {
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => 
+        Promise.resolve(
+          {
+            results: peopleData.results
+          }
+        )   
+      }));
+  });
+
+  it('should be a function', () => {
+    expect(fetchAPI).toBeAFunction;
+  });
+
+  it('should return fetchedData', async () => {
+    const fetch = await fetchAPI('people');
+
+    expect(typeof fetch).toEqual('object')
+  });
+
+  it('should return cleaned fetchedData', async () => {
+    const mockData = [{
+          name: 'Luke Skywalker',
+          type: 'people',
+          info: {
+            fav: false,
+            homeworld: {results: peopleData.results}, 
+            species: {results: peopleData.results}
+          }
+        }];
+    
+    const fetch = await fetchAPI('people');
+    expect(fetch).toEqual(mockData)
+  });
+});
+
+describe('apiCalls test with type PLANETS', () => {
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => 
+        Promise.resolve(
+          {
+            results: planetData.results           
+          }
+        )   
+      }));
+  });
+
+  it('should be a function', () => {
+    expect(fetchAPI).toBeAFunction;
+  });
+
+  it('should return fetchedData', async () => {
+    const fetch = await fetchAPI('planets');
+
+    expect(typeof fetch).toEqual('object')
+  });
+
+  it('should return cleaned fetchedData', async () => {
+    const mockData = [{
+          name: 'Alderaan',
+          type: 'planets',
+          info: {
+            population: '2000000000',
+            residents: [
+              undefined,
+              undefined,
+              undefined,
+           ],
+            terrain: 'grasslands, mountains',
+            climate: 'temperate',
+            fav: false
+          }
+        }];
+    
+    const fetch = await fetchAPI('planets');
+    console.log(fetch)
+    expect(fetch).toEqual(mockData)
+  });
+});
+
+describe('apiCalls test with type VEHICLES', () => {
   beforeEach(() => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       json: () => 
@@ -41,25 +136,73 @@ describe('apiCalls test with type people', () => {
           {
             results: [
               {
-                name: 'Darth Vader',
+                name: 'AT-AT',
+                model: 'All Terrain Armored Transport',
+                vehicle_class: 'assault walker',
+                passengers: 40,
               }
+              
             ]
           }
         )   
       }));
   });
 
-  it('should render correctly', () => {
-
+  it('should be a function', () => {
     expect(fetchAPI).toBeAFunction;
   });
 
   it('should return fetchedData', async () => {
-    const fetch = await fetchAPI('people');
-    console.log(fetch)
+    const fetch = await fetchAPI('vehicles');
 
     expect(typeof fetch).toEqual('object')
   });
 
+  it('should return cleaned fetchedData', async () => {
+    const mockData = [{
+          name: 'AT-AT',
+          type: 'vehicles',
+          info: {
+            model: 'All Terrain Armored Transport',
+            class: 'assault walker',
+            passengers: 40,
+            fav: false
+          }
+        }];
+    
+    const fetch = await fetchAPI('vehicles');
+    expect(fetch).toEqual(mockData)
+  });
+});
 
+describe('apiCalls test with type PERSON', () => {
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => 
+        Promise.resolve(
+          {
+            name: 'Leia Organa'
+          }
+        )   
+      }));
+  });
+
+  it('should be a function', () => {
+    expect(fetchAPI).toBeAFunction;
+  });
+
+  it('should return fetchedData', async () => {
+    const fetch = await fetchAPI('person');
+    
+    expect(typeof fetch).toEqual('object')
+  });
+
+  it('should return cleaned fetchedData', async () => {
+    const mockData = {
+          name: 'Leia Organa'
+        };
+    
+    const fetch = await fetchAPI('person');
+    expect(fetch).toEqual(mockData)
+  });
 });
