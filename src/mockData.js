@@ -74,5 +74,21 @@ const planetData = {
   ]
 };
 
+const mockCardObj = {name: 'cardName', type: 'type', fav: false, info: {}};
+const mockArray = [];
+for (let i = 0; i < 10; i++) {
+  mockArray.push(mockCardObj);
+};
 
-export default {peopleData, planetData, vehicleData};
+const mockState = {
+  currentFilm: {title: 'A New Hope'},
+  displaying: null,
+  errorStatus: false,
+  favorites: [],
+  people: mockArray,
+  planets: mockArray,
+  vehicles: mockArray
+};
+
+
+export default {peopleData, planetData, vehicleData, mockState};
