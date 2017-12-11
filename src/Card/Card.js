@@ -9,10 +9,10 @@ const Card = ({ card, updateFavorites }) => {
     : 'Card' ;
 
   let mappedCardInfo = Object.keys(card.info).map((stat, index) => {
-      return (
-        <span key={`span-${index}`}>{`${stat}: ${card.info[stat]}`}</span>
-      )
-    });
+    return (
+      <span key={`span-${index}`}>{`${stat}: ${card.info[stat]}`}</span>
+    );
+  });
 
   if (card.type === 'planets') {
     mappedCardInfo = Object.keys(card.info).map((stat, index) => {
@@ -26,11 +26,11 @@ const Card = ({ card, updateFavorites }) => {
           : <li>N/A</li>;
         return (
           <ul key={`ul-${index}`}>{stat}: {mappedResidents}</ul>
-        )
+        );
       }
       return (
         <span key={`span-${index}`}>{`${stat}: ${card.info[stat]}`}</span>
-      )
+      );
     });
   }
 
@@ -44,9 +44,9 @@ const Card = ({ card, updateFavorites }) => {
         <p>{card.name}</p>
       </div>
       <div className={`card-info-container`}>
-      {
-        mappedCardInfo
-      }
+        {
+          mappedCardInfo
+        }
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Card from './Card';
 
 describe('Card test', () => {
   let renderedCard;
+  
   beforeEach(() => {
     renderedCard = shallow(
       <Card card={{info: {
@@ -25,6 +26,7 @@ describe('Card test', () => {
 
   it('should render a span for each piece of card data', () => {
     const span = renderedCard.find('span').first();
+
     expect(span.text()).toEqual('model: All Terrain Armored Transport');
-  })
+  });
 });

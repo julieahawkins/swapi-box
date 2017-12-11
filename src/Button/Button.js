@@ -33,10 +33,7 @@ const Button = (props) => {
 
 Button.propTypes ={
   name: PropTypes.string,
-  cardFav: PropTypes.bool,
-  cardType: PropTypes.string,
-  cardInfo: PropTypes.object,
-  cardName: PropTypes.string,
+  card: PropTypes.object,
   displaying: PropTypes.string,
   displayCards: PropTypes.func,
   updateFavorites: PropTypes.func
