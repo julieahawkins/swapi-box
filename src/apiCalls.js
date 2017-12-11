@@ -57,8 +57,10 @@ const fetchPeopleData = async(peopleArray) => () => {
       type: 'people',
       fav: false,
       info: {
-        homeworld, 
-        species
+        homeworld: homeworld.name, 
+        population: homeworld.population,
+        species: species.name,
+        language: species.language
       }
     };
 

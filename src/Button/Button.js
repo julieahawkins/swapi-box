@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './Button.css';
 
 const Button = (props) => {
-  console.log(props)
   const buttonClass = props.displaying !== props.name.toLowerCase()
     ? 'Button' 
     : 'Button selected';
