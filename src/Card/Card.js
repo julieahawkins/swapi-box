@@ -25,7 +25,7 @@ const Card = ({ card, updateFavorites }) => {
           })
           : <li>N/A</li>;
         return (
-          <ul>{stat}: {mappedResidents}</ul>
+          <ul key={`ul-${index}`}>{stat}: {mappedResidents}</ul>
         )
       }
       return (
