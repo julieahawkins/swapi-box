@@ -4,5 +4,10 @@
   button {
     margin: 0px 30px;
     width: 150px;
+    &:hover {
+      transition: 1s;
+      background: #4ea6c5;
+      color: black;
+    }
   }
 }

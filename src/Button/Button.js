@@ -24,9 +24,9 @@ const Button = (props) => {
 
   return (
     <button 
-      className={`${buttonClass} ${props.name} ${buttonFav}`}
+      className={`${buttonClass} ${props.name} ${buttonFav} fav-icon`}
       onClick={() => { handleClick(props.name, props.card); }}>
-      <span className={`fav-icon ${buttonFav}`}>{buttonText}</span> 
+      {buttonText} 
     </button>
   );
 };
