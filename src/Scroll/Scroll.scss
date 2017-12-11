@@ -28,7 +28,7 @@
   line-height: 150%;
 
   color: #f9d448;
-  animation: crawl 120s linear;
+  animation: crawl 120s linear infinite;
   .intro {
     margin-bottom: 100px;
     padding: 150px;
@@ -56,7 +56,7 @@
 
 @keyframes crawl {
   0% {
-    top: 70px;
+    top: 0px;
 
     transform: rotateX(20deg) translateZ(0);
   }
