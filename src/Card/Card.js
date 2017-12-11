@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Card.css';
 
 const Card = ({ card, updateFavorites }) => {
+  //take fav out of card info and loop over card.info to make spans
   const cardClass = !card.info.fav 
     ? 'Card'
     : 'Card favorite';

@@ -16,6 +16,10 @@ const Scroll = ({currentFilm}) => {
     <div className='scroll-container'>
       <div className='fade'></div>
       {
+        !currentFilm.crawlText &&
+        <h1>not there yet..</h1>
+      }
+      {
         currentFilm.crawlText && 
         <div className='Scroll'>
           <p className='intro'>
