@@ -39,7 +39,7 @@ describe('App test', () => {
     renderedApp.setState({errorStatus: true});
     const h1 = renderedApp.find('h1').first();
     expect(h1.text()).toEqual('Error: Data Not Found');
-  
+   
   });
 
   it('should have a match the default state', () => {
